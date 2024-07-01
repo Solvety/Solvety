@@ -1,13 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html style="margin:0; padding:0; height:100vh;">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="icon" type="image/svg+xml" href="/Logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+
+
+    <title>Solvety</title>
   </head>
-  <body>
+	<body >
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div id="portal"></div>
+    <script type="module" src="/src/main.jsx">
+      
+    if(window.innerHeight > window.innerWidth){
+      document.getElementsByTagName('body')[0].style.transform = 'rotate(90deg)';
+
+    }
+   
+    </script>
   </body>
 </html>
