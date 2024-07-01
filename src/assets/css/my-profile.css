@@ -1,0 +1,659 @@
+
+
+.myProfile-container{
+
+    display: grid;
+    grid-template-columns: 22vw 75vw;
+    grid-template-rows: 15vh auto;
+    grid-template-areas: "sideNav topNav"
+                         
+                         "sideNav mainContent";
+  
+    column-gap: 0px;
+    height: auto;
+    background-color: #F4F4F4;
+    padding-bottom: 50px;
+}
+
+.myProfile-container.dark{
+    background-color: #131217;
+}
+
+.myProfile-content{
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F4F4;
+    gap: 30px;
+}
+
+.myProfile-container.dark .myProfile-content{
+    background-color: #131217;
+}
+.myProfile-content #title{
+     background-color: #EFE7FF;
+     align-self: center;
+     padding: 2px 100px;
+     border-radius: 8px;
+}
+
+.myProfile-content #title p{
+    font-family: Outfit;
+    font-size: 16px;
+    color:#8E5DF5 ;
+    text-align: center;
+    font-weight: bold;
+}
+
+.myProfile-content .flex-cont{
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+}
+
+.myProfile-content .left-cont{
+    display:grid;
+    width: 40vw;
+    grid-template-rows: 50vh auto;
+    grid-template-columns: 20vw 22vw;
+    grid-template-areas: "avatar verfication"
+                         "details details";
+    gap:30px;
+    margin-right: auto;
+}
+
+.left-cont > div{
+    background-color: #fff;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.myProfile-container.dark .left-cont >div{
+    background-color: #201F24;
+    color:#F4F4F4;
+}
+.left-cont .avatar-box{
+    grid-area: avatar;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.avatar-box img:first-child{
+    width: 200px;
+    height:200px;
+}
+
+.avatar-box img:nth-child(2){
+     height: 20px;
+}
+
+.avatar-box p{
+    font-family: Outfit;
+    font-size: 20px;
+    line-height: 16px;
+   
+}
+.avatar-box span{
+    padding-left: 20px;
+}
+.avatar-box p{
+    align-self: center;
+}
+
+.left-cont .verfication-box{
+    grid-area: verfication;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    padding: 20px;
+}
+
+.verfication-box label{
+    font-family: Outfit;
+    font-size: 12px;
+}
+.verfication-box input{
+    color:#232121;
+    padding: 10px;
+    border:1px solid #292727 ;
+    border-radius: 10px;
+    width: 250px;
+}
+.myProfile-container.dark .verfication-box input{
+    border:1px solid rgba(244, 244, 244, 0.5);
+    background-color: inherit;
+}
+.verfication-box .icons{
+    display: flex;
+    align-self: flex-end;
+    gap:20px;
+    padding-right: 20px;
+}
+
+.verfication-box .last{
+    display: flex;
+    margin-top: 20px;
+}
+
+.verfication-box  .last h2{
+    margin-right: auto;
+    font-family: Outfit;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.verfication-box  .last p{
+    font-family: Inter;
+    font-size: 12px;
+    color:#027A48;
+    font-weight: 500px;
+    background-color: #ECFDF3;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.left-cont .user-details{
+    grid-area: details;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    font-family: Outfit;
+    font-size: 16px;
+    gap:30px;
+}
+
+#gender-box{
+    display: flex;
+    gap: 30px;
+}
+#gender-box label{
+    font-size: 14px;
+    align-self: center;
+}
+
+#gender-box h3{
+  margin-right: 50px;
+}
+
+.age-box{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+   
+}
+
+.select-age{
+   width:100px;
+   color: rgba(35, 33, 33,0.5);
+}
+
+.status-box{
+    display: flex;
+    gap:10px;
+    align-items: center;
+    
+}
+
+.details-box{
+    display: grid;
+    grid-template-rows: 15vh 15vh;
+    grid-template-columns: 15vw 15vw;
+    column-gap:30px;
+    
+}
+.details-box .box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-details input[type="radio"]{
+    opacity: 0;
+    position: relative;
+    cursor: pointer;
+}
+
+
+  .user-details input[type="radio"] {
+    opacity: 0;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .user-details #checked {
+    border: 0.5px solid #0000004d;
+    cursor: pointer;
+    padding: 0px 15px;
+    border-radius: 8px;
+    margin-right: 10px;
+    display: inline-flex;
+    width: 40px;
+    height: 35px;
+    align-content: center;
+    justify-content: center;
+  }
+  
+  .myProfile-container.dark .user-details #checked{
+    border:0.5px solid #8E5DF5;
+  }
+
+.user-details input[type="radio"] +label {
+    
+     display: flex;
+     cursor: pointer;
+     align-items: center;
+}
+
+  .user-details input[type="radio"]:checked +label >#checked::after {
+    content: url('../images/checkIcon.svg');
+    position: absolute;
+    display: block;
+    justify-self: center;
+    align-self:center;
+    margin-top: 5px;
+    
+    
+  }
+  
+
+  .interest-box{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+ 
+.interest-box .interest-lists{
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    grid-template-rows: 30px 30px;
+    border-radius: 15px;
+    gap:10px;
+    padding: 20px 10px;
+}
+
+.myProfile-container.dark .interest-box .interest-lists{
+    border:0.5px solid #D2BCFF;
+}
+.interest-lists p {
+    background-color: #F3EEFF;
+    color:#8E5DF5;
+    font-size: 18px;
+    padding: 2px 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+.myProfile-container.dark .interest-lists p{
+    background-color: #565557;
+    color:#F4F4F4;
+}
+.interest-lists p:last-child{
+    grid-column: 1/3;
+    justify-self: center;
+}
+
+.myProfile-content .right-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 30vw;
+    
+}
+
+.myProfile-content .first-row{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    padding: 10px;
+    align-items: center;
+    border-radius: 30px;
+}
+.myProfile-container.dark .myProfile-content .first-row{
+    background-color: #1E1F22;
+}
+.first-row > p{
+    border-top: 1px solid rgba(0, 0, 0,0.3);
+    font-family: Outfit;
+    font-size: 16px;
+    font-weight: bold;
+    width: 20vw;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.first-row >p >span{
+    color: #8E5DF5;
+}
+.first-row >h2{
+    font-family: Outfit;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.myProfile-container.dark .first-row >h2, .myProfile-container.dark .first-row > p{
+    color:#fff;
+}
+.payment-box{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    background-color: #F3EDFF;
+    width: 25vw;
+    padding:10px 50px;
+    border-radius: 20px;
+    transform: rotate(0.5deg); /* Rotate the entire payment box */
+  box-shadow: -5px -1px 10px rgba(0, 0, 0, 0.3); /* Apply box shadow */
+}
+
+.payment-box h2{
+    align-self: center;
+    font-size: 18px;
+    font-family: Outfit;
+    font-weight: 600;
+}
+
+.payment-box p{
+    padding: 10px;
+    color:#4E4848;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #D1BCFF;
+    
+}
+
+.payment-box p:last-child{
+    background-color:#000000 ;
+    color: #fff;
+   
+    gap:20px;
+    text-align: center;
+}
+
+
+.right-cont .second-row{
+    background: url('../images/lady.svg');
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height:100%;
+    border-radius: 15px;
+}
+
+.right-cont .second-row p{
+    color: #fff;
+    font-size: 18px;
+    font-family: Outfit;
+    font-weight: bold;
+    align-self: center;
+    padding: 0 20px;
+}
+
+@media only screen and (max-width: 1246px) {
+   
+    .left-cont .user-details{
+        padding: 20px 20px;
+        
+    }
+    .verfication-box input{
+        
+        width: 170px;
+    }
+    #gender-box{
+        display: flex;
+        gap: 3px;
+    }
+    .status-box{
+        display: flex;
+        gap:0px;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .interest-lists p {
+     
+        padding: 2px 20px;
+        
+    }
+}
+
+@media only screen and (max-width:1115px){
+    
+    .interest-box .interest-lists{
+      
+        grid-template-columns: repeat(2,auto);
+       
+        padding: 20px 10px;
+    }
+}
+
+@media only screen and (max-width:993px){
+
+    .myProfile-container{
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: "sideNav"
+                             "mainContent"
+                             "footer";
+      height: 100vh;
+    }
+    .myProfile-content .flex-cont{
+        gap: 10px;
+    }
+    .myProfile-content .flex-cont{
+        display: flex;
+        flex-direction: row;
+        gap: 70px;
+        padding: 0 20px;
+    }
+    
+    .myProfile-content .left-cont{
+        display:grid;
+        width: 60vw;
+        
+        grid-template-rows: 50vh auto;
+        grid-template-columns: 30vw 30vw;
+        grid-template-areas: "avatar verfication"
+                             "details details";
+        
+    }
+    .verfication-box input{
+        width: 200px;
+    }
+    .details-box{
+        grid-template-rows: 15vh 15vh;
+        grid-template-columns: 25vw 25vw;
+        column-gap:30px;
+        row-gap: 10px;
+    }
+
+    .myProfile-content .first-row{
+        padding: 30px;
+    }
+    .myProfile-content .right-cont{
+        
+        gap: 20px;
+        width: 30vw;
+        
+    }
+
+    .payment-box{
+        width:25vw;
+        padding-left: 20px;
+    }
+
+    .payment-box p{
+        width: 200px;
+
+    }
+}
+
+@media only screen and (max-width:900px){
+    .myProfile-content .flex-cont{
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        padding: 0 20px;
+    }
+    .myProfile-content #title{
+        display: none;
+    }
+    .myProfile-content .left-cont{
+        display:grid;
+        width: 100%;
+        grid-template-rows: repeat(4, auto);
+        grid-template-columns: 100%;
+        grid-template-areas: "avatar"
+                             "verfication"
+                             "details"
+                             "right";
+        gap:30px;
+        margin: 0;
+        padding: 10px 100px;
+        /* justify-items: center; */
+    }
+    .left-cont .verfication-box{
+        grid-area: verfication;
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        padding-right: 50px;
+    }
+    .verfication-box input, .verfication-box label{
+        width: 400px;
+        align-self: center;
+    }
+    .verfication-box .icons{
+        padding-right: 100px;
+    }
+    .verfication-box .last{
+      padding-left: 10%;
+    }
+    .myProfile-content .right-cont{
+         grid-area: right;
+         width: 70vw;
+         align-self: center;
+    }
+
+    .payment-box{
+        width:50vw;
+        padding:10px 0;
+    }
+    .payment-box p{
+        width:40vw;
+        align-self: center;
+    }
+    .right-cont .second-row{
+        height: 400px;
+        /* width: 100vw; */
+        background-size: cover;
+
+    }
+}
+
+@media only screen and (max-width:700px){
+
+    .myProfile-content .flex-cont{
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
+        padding: 0 20px;
+    }
+    .myProfile-content #title{
+        display: none;
+    }
+    .myProfile-content .left-cont{
+        
+        padding: 10px 10px;
+      
+    }
+    .left-cont .verfication-box{
+        grid-area: verfication;
+        display: flex;
+        flex-direction: column;
+        padding-right: 50px;
+    }
+    .verfication-box input, .verfication-box label{
+        width: 100%;
+        align-self: center;
+    }
+    .verfication-box .icons{
+        padding-right: 0px;
+    }
+    .verfication-box .last{
+      padding-left: 10%;
+    }
+    .myProfile-content .right-cont{
+         grid-area: right;
+         width: 100vw;
+         align-self: center;
+         padding: 10px 30px;
+
+    }
+
+    .payment-box{
+        width:70vw;
+        padding:10px 0;
+    }
+    .payment-box p{
+        width:50vw;
+        align-self: center;
+    }
+    .right-cont .second-row{
+        height: 400px;
+        background-size: cover;
+
+    }
+    .first-row > p{
+        width: 60vw;
+    }
+
+    .status-box{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 0px;
+        font-size: 16px;
+    }
+    .status-box label, .select-age{
+        padding-left: 20px;
+    }
+    .details-box{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        gap:20px;
+    }
+    #gender-box{
+        gap: 10px;
+    }
+}
+
+@media only screen and (max-width:500px){
+    #gender-box{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #gender-box label{
+        align-self: flex-start;
+        padding-left: 20px;
+    }
+    .interest-box .interest-lists{
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+        padding: 10px 20px;
+        
+    }
+    .interest-lists p{
+        font-size: 14px;
+    }
+    .payment-box h2{
+        font-size: 16px;
+        padding: 10px;
+    }
+}

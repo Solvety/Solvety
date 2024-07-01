@@ -1,0 +1,459 @@
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import OptionSlider from "./OptionSlider";
+import QwestButton from "./QwestButton";
+
+// Question component
+const Question = ({ question, fade }) => (
+  <div className="bg-white p-3 992:p-5 992:text-xl rounded-xl text-slate-500 w-[268px] 992:w-[356px] text-center">
+    <h1
+      className={`transition-all duration-500 ${
+        fade ? "opacity-100 translate-x-0" : "opacity-50 translate-x-3"
+      }`}
+    >
+      {question.question}
+    </h1>
+  </div>
+);
+
+// Options component
+const Options = ({ answer, handleSelected, fade, option, index }) => {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  return (
+    <div
+      className={`992:text-xl rounded-[1.2rem] w-[131.72px]  992:w-[179px] text-left ${
+        answer ? "bg-[#8E5DF5] text-white" : "bg-white text-slate-500"
+      } cursor-pointer py-2 992:py-3 px-1}`}
+      onClick={handleSelected}
+    >
+      <p
+        className={`pl-5 transition-all duration-500 ${
+          fade ? "opacity-100 translate-x-0" : "opacity-50 translate-x-3"
+        }`}
+      >
+        {alphabet[index]}. {option}
+      </p>
+    </div>
+  );
+};
+
+// Main QuestionSection component
+const QuestionSection = ({ surveyQuestion, updateCoins }) => {
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentOptionSet, setCurrentOptionSet] = useState(0);
+  const [fade, setFade] = useState(true);
+  const [timer, setTimer] = useState(5);
+  const [isPaused, setIsPaused] = useState(false);
+  const timerRef = useRef(null);
+  const navigate = useNavigate();
+
+  const presentQuestion = surveyQuestion[currentQuestion];
+
+  const maxOptionsPerSet = 4;
+  const totalOptionSets = Math.ceil(presentQuestion.options.length / maxOptionsPerSet);
+
+  // Start or reset the timer
+  const startTimer = () => {
+    clearInterval(timerRef.current);
+    setTimer(5);
+    timerRef.current = setInterval(() => {
+      setTimer((prev) => prev - 1);
+    }, 1000);
+  };
+
+  // Pause or resume the timer
+  const togglePause = () => {
+    setIsPaused((prev) => {
+      if (prev) {
+        // Resume timer
+        timerRef.current = setInterval(() => {
+          setTimer((prev) => prev - 1);
+        }, 1000);
+      } else {
+        // Pause timer
+        clearInterval(timerRef.current);
+      }
+      return !prev;
+    });
+  };
+
+  // End the quiz
+  const endQuiz = () => {
+    clearInterval(timerRef.current);
+    updateCoins([]);
+    navigate("/"); // Redirect to user dashboard
+  };
+
+  // Clear timer on unmount
+  useEffect(() => {
+    return () => clearInterval(timerRef.current);
+  }, []);
+
+  // Timer effect
+  useEffect(() => {
+    if (timer <= 0) {
+      clearInterval(timerRef.current);
+      if (selectedAnswers[currentQuestion] == null) {
+        updateCoins(0);
+      }
+      // nextQuestion();
+    }
+  }, [timer]);
+
+  // Start timer when the component mounts or when the current question changes
+  useEffect(() => {
+    if (!isPaused && selectedAnswers[currentQuestion] == null && currentQuestion < surveyQuestion.length) {
+      startTimer();
+    }
+  }, [currentQuestion, isPaused]);
+
+  // Fade effect for transitions
+  useEffect(() => {
+    setFade(false);
+    const timeout = setTimeout(() => setFade(true), 500);
+    return () => clearTimeout(timeout);
+  }, [presentQuestion, currentOptionSet]);
+
+  // Handle selecting an answer
+  const handleSelectedAnswer = (index) => {
+    if (selectedAnswers[currentQuestion] == null) {
+      setSelectedAnswers({
+        ...selectedAnswers,
+        [currentQuestion]: index
+      });
+      if (timer > 0) {
+        clearInterval(timerRef.current);
+        updateCoins(1);
+      }
+    } else {
+      setSelectedAnswers({
+        ...selectedAnswers,
+        [currentQuestion]: index
+      });
+    }
+  };
+
+  // Go to the next question
+  const nextQuestion = () => {
+    if (currentQuestion < surveyQuestion.length - 1) {
+      setCurrentQuestion((next) => {
+        const newQuestionIndex = next < surveyQuestion.length - 1 ? next + 1 : next;
+        if (selectedAnswers[newQuestionIndex] == null) {
+          startTimer();
+        }
+        return newQuestionIndex;
+      });
+      setCurrentOptionSet(0); // Reset option set when moving to next question
+    } else {
+      clearInterval(timerRef.current); // Stop the timer if it's the last question
+    }
+  };
+
+  // Go to the previous question
+  const prevQuestion = () => {
+    setCurrentQuestion((prev) => (prev > 0 ? prev - 1 : prev));
+    setCurrentOptionSet(0); // Reset option set when moving to previous question
+  };
+
+  // Handle showing next set of options
+  const handleNextOptionSet = () => {
+    setCurrentOptionSet((next) => (next < totalOptionSets - 1 ? next + 1 : next));
+  };
+
+  // Handle showing previous set of options
+  const handlePrevOptionSet = () => {
+    setCurrentOptionSet((prev) => (prev > 0 ? prev - 1 : prev));
+  };
+
+  // Get the current set of options to display
+  const currentOptions = presentQuestion.options.slice(
+    currentOptionSet * maxOptionsPerSet,
+    (currentOptionSet + 1) * maxOptionsPerSet
+  );
+
+  return (
+    <div className="flex flex-col justify-center 992:items-center gap-5">
+      <Question question={presentQuestion} fade={fade} />
+      {/* Options */}
+      <div className="grid grid-cols-1 992:grid-cols-2 gap-y-2 992:gap-y-8 992:gap-x-14">
+        {currentOptions.map((option, index) => (
+          <Options
+            key={index}
+            answer={selectedAnswers[currentQuestion] === currentOptionSet * maxOptionsPerSet + index}
+            handleSelected={() => handleSelectedAnswer(currentOptionSet * maxOptionsPerSet + index)}
+            option={option}
+            fade={fade}
+            index={currentOptionSet * maxOptionsPerSet + index}
+          />
+        ))}
+      </div>
+      {/* Option Sliders */}
+      {presentQuestion.options.length > maxOptionsPerSet && (
+        <div className="grid grid-cols-3 gap-y-2 gap-x-3 w-fit mt-5">
+          {Array.from({ length: totalOptionSets }).map((_, index) => (
+            <OptionSlider
+              key={index}
+              viewOption={currentOptionSet === index}
+              handleViewOption={() => setCurrentOptionSet(index)}
+            />
+          ))}
+        </div>
+      )}
+      {/* Buttons */}
+      <div className="w-full">
+        <div className="flex space-x-4 992:space-x-24 items-center justify-around">
+          <QwestButton bgColor="#8E5DF5" onClick={prevQuestion}>
+            Prev
+          </QwestButton>
+          <QwestButton color="#8E5DF5" bgColor="#E8DCFF" onClick={nextQuestion}>
+            Next
+          </QwestButton>
+          <QwestButton color="black" bgColor="white" onClick={togglePause} hidden>
+            {isPaused ? "Start" : "Pause"}
+          </QwestButton>
+          <QwestButton color="#8E5DF5" bgColor="#FA8787" onClick={endQuiz} hidden>
+            End
+          </QwestButton>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default QuestionSection;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
+import CoinGrid from "./CoinGrid";
+import BalanceCard from "./BalanceCard";
+import QuestionSection from "./QuestionSection";
+import { surveyQuestions } from "../../../data/data";
+
+const QwestScenes = () => {
+  const [coins, setCoins] = useState([]);
+  const [balance, setBalance] = useState(25);
+
+
+  const updateCoins = (coin) => {
+    setCoins((prevCoins) => [...prevCoins, coin]);
+  };
+
+  return (
+    <div className="relative z-10 text-white h-screen">
+      <div className="flex items-center min-[462px]:px-0 overflow-x-auto justify-between gap-6 992:gap-0 992:justify-around 992:block whitespace-nowrap w-full min-[462px]:w-full">
+        <div className="inline-block min-w-[180px]"> 
+          <CoinGrid balance={balance} coins={coins} />
+        </div>
+        <div className={`inline-block 992:absolute 992:right-0 ${coins.length > 3? "992:top-20":"992:top-14"} mt-4 992:mt-0`}>
+          <BalanceCard balance={balance} stipend={coins}/>
+        </div>
+      </div>
+      {/* QuestionSection */}
+      <div className="mt-6 992:mt-[14rem] 992:float-right w-fit 992:px-20">
+        <QuestionSection surveyQuestion={surveyQuestions} updateCoins={updateCoins} />
+      </div>
+    </div>
+  );
+};
+
+export default QwestScenes;
+
+
+
+
+
+
+
+
+
+import React, { createContext, useState, useRef, useEffect, useContext } from "react";
+import { surveyQuestions } from "../data/data";
+
+
+const QwestContext = createContext();
+export const useQuest = () => useContext(QwestContext);
+
+export const QwestProvider = ({ children }) => {
+  const [selectedAnswers, setSelectedAnswers] = useState({});
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentOptionSet, setCurrentOptionSet] = useState(0);
+  const [fade, setFade] = useState(true);
+  const [timer, setTimer] = useState(5);
+  const [isPaused, setIsPaused] = useState(false);
+  const [showRetakePopup, setShowRetakePopup] = useState(false); 
+  const [coins, setCoins] = useState([]);
+  const [balance, setBalance] = useState(25);
+  const timerRef = useRef(null);
+
+  const totalOptionSets = Math.ceil(surveyQuestions[currentQuestion]?.options.length / 4);
+
+  const startTimer = () => {
+    clearInterval(timerRef.current);
+    setTimer(5);
+    timerRef.current = setInterval(() => {
+      setTimer((prev) => prev - 1);
+    }, 1000);
+  };
+
+  const togglePause = () => {
+    setIsPaused((prev) => {
+      if (prev) {
+        timerRef.current = setInterval(() => {
+          setTimer((prev) => prev - 1);
+        }, 1000);
+      } else {
+        clearInterval(timerRef.current);
+      }
+      return !prev;
+    });
+  };
+
+  const endQuiz = () => {
+    clearInterval(timerRef.current);
+    setCoins([]);
+    localStorage.removeItem("questStarted");
+    window.location.reload();
+  };
+
+  const handleRetake = () => {
+    setShowRetakePopup(true);
+    startTimer();
+    updateCoins(1);
+  };
+
+  const handleCancel = () => {
+    setShowRetakePopup(false);
+    nextQuestion();
+  };
+
+  useEffect(() => {
+    return () => clearInterval(timerRef.current);
+  }, []);
+
+  useEffect(() => {
+    if (timer <= 0) {
+      clearInterval(timerRef.current);
+      if (selectedAnswers[currentQuestion] == null) {
+        updateCoins(0);
+        setShowRetakePopup(true);
+      }
+    }
+  }, [timer]);
+
+  useEffect(() => {
+    if (!isPaused && selectedAnswers[currentQuestion] == null && currentQuestion < surveyQuestions.length) {
+      startTimer();
+    }
+  }, [currentQuestion, isPaused]);
+
+  useEffect(() => {
+    setFade(false);
+    const timeout = setTimeout(() => setFade(true), 500);
+    return () => clearTimeout(timeout);
+  }, [currentQuestion, currentOptionSet]);
+
+  const handleSelectedAnswer = (index) => {
+    if (selectedAnswers[currentQuestion] == null) {
+      setSelectedAnswers({
+        ...selectedAnswers,
+        [currentQuestion]: index,
+      });
+      if (timer > 0) {
+        clearInterval(timerRef.current);
+        updateCoins(1);
+      }
+    } else {
+      setSelectedAnswers({
+        ...selectedAnswers,
+        [currentQuestion]: index,
+      });
+    }
+  };
+
+  const nextQuestion = () => {
+    if (currentQuestion < surveyQuestions.length - 1) {
+      setCurrentQuestion((next) => {
+        const newQuestionIndex = next < surveyQuestions.length - 1 ? next + 1 : next;
+        if (selectedAnswers[newQuestionIndex] == null) {
+          startTimer();
+        }
+        return newQuestionIndex;
+      });
+      setCurrentOptionSet(0);
+    } else {
+      clearInterval(timerRef.current);
+    }
+  };
+
+  const prevQuestion = () => {
+    setCurrentQuestion((prev) => (prev > 0 ? prev - 1 : prev));
+    setCurrentOptionSet(0);
+  };
+
+  const handleNextOptionSet = () => {
+    setCurrentOptionSet((next) => (next < totalOptionSets - 1 ? next + 1 : next));
+  };
+
+  const handlePrevOptionSet = () => {
+    setCurrentOptionSet((prev) => (prev > 0 ? prev - 1 : prev));
+  };
+
+  const updateCoins = (coin) => {
+    setCoins((prevCoins) => [...prevCoins, coin]);
+  };
+
+  const progress = (currentQuestion / surveyQuestions.length) * 100;
+
+  return (
+    <QwestContext.Provider
+      value={{
+        selectedAnswers,
+        currentQuestion,
+        currentOptionSet,
+        fade,
+        timer,
+        isPaused,
+        coins,
+        balance,
+        timerRef,
+        showRetakePopup,
+        progress,
+        startTimer,
+        togglePause,
+        endQuiz,
+        handleSelectedAnswer,
+        nextQuestion,
+        prevQuestion,
+        handleNextOptionSet,
+        handlePrevOptionSet,
+        updateCoins,
+        setSelectedAnswers,
+        setCurrentQuestion,
+        setCurrentOptionSet,
+        setFade,
+        setTimer,
+        setIsPaused,
+        setCoins,
+        setBalance,
+        handleRetake,
+        handleCancel,
+      }}
+    >
+      {children}
+    </QwestContext.Provider>
+  );
+};

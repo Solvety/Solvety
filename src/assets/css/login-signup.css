@@ -1,0 +1,430 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}  
+.signUp-container {
+  display: flex;
+  background-color: #fff;
+  min-height: 110vh;
+  /* border:10px solid rgba(255, 255, 255, 0); */
+  flex-direction: row; 
+  justify-content: stretch; 
+}
+.signUp-container input{
+  border: 0;
+}
+
+.signUp-left{
+    width:50vw;
+    display: flex;
+    flex-direction: column;
+}
+.signUp-left #logo-container{
+    padding: 20px;
+    width: 200px;
+}
+.signUp-left main{
+    align-self: center;
+  
+    /* width:100%; */
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.signUp-right {
+  
+  background-image: url('../images/bGImg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 50vw;
+  display: flex;
+}
+
+.signUp-left .first-content, 
+.signUp-left .second-content, 
+.signUp-left .third-content{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    margin-top: 0px;
+}
+.signUp-left .first-content{
+  margin-top: 10px;
+}
+
+.radio-inputs{
+    display: flex;
+    gap:30px;
+    justify-items: center;
+    justify-content: center;
+}
+
+.signUp-left h1, 
+.signUp-left label, 
+.signUp-left p, 
+.second-content h2,
+.first-content h2{
+    font-family: Outfit;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 38px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #292727;
+    margin-bottom: 40px;
+}
+
+.errMsg {
+  padding: 10px;
+  color:#ff0000;
+  font-size: 13px;
+  align-self: center;
+  width: 20vw;
+ font-family: Oufit;
+}
+
+
+
+.second-content h2, .first-content h2{
+  font-size: 30px;
+}
+.signUp-left label{
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.radio-inputs label{
+    font-size: 14px;
+    color:#000;
+}
+
+.signUp-container input[type='email'],
+.signUp-container input[type='text']{
+    
+    /* font-family: Outfit; */
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 38px;
+    letter-spacing: 0em;
+    opacity: 0.8;
+    outline: none;
+    border-bottom: 1px solid #292727;
+    width:320px;
+    text-align: center;
+    position: relative;
+    align-self:center;
+}
+
+.pwd-container{
+  display: flex;
+  border-bottom: 1px solid #292727;
+}
+.pwd-container input[type='text']{
+  border: none;
+  color: #000;
+}
+.pwd-container img{
+  align-self: center;
+   width: 30px;
+   height: 20px;
+   opacity: 0.4;
+   cursor: pointer;
+}
+
+.pwd-container img.open{
+  height: 30px;
+}
+.signUp-container input[type='password']{
+    
+  /* font-family: Outfit; */
+  color:rgba(0, 0, 0, 0.7);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: 0em;
+  opacity: 0.9;
+  outline: none;
+  border: none;
+  width:320px;
+  text-align: center;
+  position: relative;
+  align-self:center;
+}
+
+.signUp-left button{
+    font-family: Inter;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: -0.5306593179702759px;
+    text-align: center;
+    background-color: #8E5DF5;
+    color:#fff;
+    padding: 10px;
+    width: 200px;
+    border-radius: 20px;
+    align-self: center;
+    border: 0;
+    margin-top: 30px;
+}
+.signUp-left button:hover{
+    background-color: rgba(142, 93, 245, 0.8);
+}
+.signUp-left button.disabled{
+  background-color: rgba(142, 93, 245, 0.5);
+}
+.signUp-left p{
+    
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.signUp-left span{
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0em;
+    color:#8E5DF5;
+   cursor: pointer;
+}
+
+.radio-container {
+   
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-right: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+    top:20px;
+    
+  }
+
+  .radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border-radius: 50%;
+    border:1px solid #000;
+  }
+
+
+
+  .radio-container input:checked ~ .checkmark {
+    background-color: #8E5DF5;
+  }
+
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  .radio-container input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  .signUp-right footer,
+  .signUp-container footer
+  {
+    padding: 50px 20px 0px;
+    font-family: Outfit;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 38px;
+    text-align: left;
+    color: #151414;
+    position: absolute; 
+    /* bottom: 20px;  */
+    align-self: flex-end;
+    left: 0;
+}
+ footer#small-footer{
+  position: relative;
+  align-self: flex-start;
+}
+  .signUp-container footer img{
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    margin: 20px 50px;
+    cursor: pointer;
+  }
+  #small-footer{
+    display: none;
+  }
+  
+  /* styles for second signup page */
+
+  .signUp-left .second-content{
+     margin-top: 100px;
+
+  }
+
+  
+  /* styles for the third signup page */
+  .signUp-left .third-content{
+    margin-top: 70px;
+   gap: 0px;
+ }
+  .third-content #confPwd{
+    margin-top: 50px;
+  }
+ 
+  #checkbox-input{
+    align-self: flex-start;
+  }
+  #checkbox-input input{
+    
+    margin: 20px 10px;
+  }
+/* Styles for login page */
+#loginBtn, #signupBtn{
+  align-self: center;
+}
+
+#forgotLink{
+align-self: flex-end;
+text-decoration: underline;
+}
+
+#forgotLink:hover p{
+  color:#8E5DF5;
+}
+.second-content.login{
+  margin-top: 50px;
+}
+/* End of styles for login page */
+
+/* Styles for Reset page */
+.first-content.reset{
+  margin-top: 30px;
+}
+/* End of styles for reset page */
+
+sup{
+  color: rgb(255, 0, 0);
+}
+
+/* Styles when user input has errors */
+.signUp-container input.err, .pwd-container.err{
+     border-bottom: 3px solid rgba(255, 0, 0);
+   }
+
+ .signUp-container input.correct, .pwd-container.correct{
+    border-bottom: 3px solid rgb(0, 128, 0);
+  }
+
+  #errMsg{
+    color:rgba(255, 0, 0, 0.6);
+    font-size: 12px;
+  }
+
+
+  @media only screen and (max-width:1246px){
+    .errMsg {
+      width: 30vw;
+    }
+    
+  }
+  @media only screen and (max-width:769px){
+    .signUp-left .first-content{
+      margin-top: 50px;
+    }
+    .signUp-container{
+        min-height: 100vh;
+        background: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.9) 100%, transparent 50%), 
+          url('../images/bGImg.png') no-repeat center; 
+          background-size: auto 100%, cover;
+          display: flex;
+        flex-direction: column; 
+    }
+
+    .signUp-right{
+        display: none;
+    }
+    .signUp-left{
+        width: 100vw;
+        z-index: 1;
+        
+    }
+    .signUp-container footer img{
+        margin: 20px 10px;
+        
+      }
+      #small-footer{
+        display: inline-block;
+      }
+      .errMsg {
+        width: 50vw;
+      }
+
+      .signUp-left h1{
+        font-size: 36px;
+      }
+
+      .second-content h2, .first-content h2{
+        font-size: 24px;
+      }
+
+      .radio-container {
+        margin-right: 5px;
+
+      }
+      .signUp-right footer,
+      .signUp-container footer
+      {
+        font-size: 16px;
+      }
+      .signUp-left main{
+        
+        margin-top: 30px;
+    }
+    
+  }
+
+  @media only screen and (max-width:400px){
+    .signUp-container input[type='email'],
+    .signUp-container input[type='text'],
+    .signUp-container input[type='password'] {
+        width:100%;
+       
+        align-self: center;
+    }
+    .radio-inputs{
+        display: flex;
+        gap:10px;
+    }
+    .errMsg {
+      width: 90vw;
+    }
+  }
+
+  @media only screen and (max-width:300px){
+    .signUp-container input[type='email'],
+    .signUp-container input[type='text'] ,
+    .signUp-container input[type='password']  {
+        width:80%;
+        align-self: center;
+    }
+  }

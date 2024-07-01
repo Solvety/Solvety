@@ -1,0 +1,481 @@
+#participant-bg {
+    background: url('/src/assets/images/qwestbg.svg') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#sec-layer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0,0.2);
+}
+#participant-bg .reas-top {
+    background-color: inherit;
+   
+}
+
+#range{
+ border:10px solid red;
+ background-color: aqua;
+
+}
+
+.range .value{
+    font-family: Outfit;
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    padding:1px 19px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+
+}
+
+
+
+/* Slider styles */
+.MuiBox-root.css-1v5z18m{
+    /* border:1px solid red; */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    width: 176px;
+    height: auto;
+}
+
+#below.MuiBox-root.css-1v5z18m{
+    width: 300px;
+    height:50px;
+}
+
+.css-ltlhnc-MuiSlider-root{
+    height:15px !important;
+    width:100%  !important;
+}
+
+#top .css-14gyywz-MuiSlider-valueLabel{
+    display: none;
+}
+
+#below .css-14gyywz-MuiSlider-valueLabel{
+    display: block !important;
+    top:40px !important;
+    /* height: 100px;
+    width: 200px; */
+    background-color: #fff !important;
+    color: #000 !important;
+    border-radius: 10px !important;
+}
+
+.css-14gyywz-MuiSlider-valueLabel::before{
+    width:0 !important;
+}
+
+.css-1ucwjgd-MuiSlider-markLabel{
+    display: none !important;
+
+}
+
+.css-1bvr8oc-MuiSlider-markLabel{
+    display: none;
+}
+
+.css-1ucwjgd-MuiSlider-markLabel{
+    background-color: #fff !important;
+}
+
+.MuiSlider-rail.css-7o8aqz-MuiSlider-rail{
+    background-color: #fff;
+    opacity: 1 !important;
+}
+#top .MuiSlider-track.css-ttgsjq-MuiSlider-track{
+    background-color:#2A2A27 ;
+}
+
+#below .css-ttgsjq-MuiSlider-track{
+    background-color:#37D8AD ;
+
+}
+
+.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.css-1as9v07-MuiSlider-thumb::before{
+    display: none !important;
+    
+
+}
+
+.css-1as9v07-MuiSlider-thumb{
+    height: 0px !important;
+}
+
+.top-slider{
+    display: flex;
+    /* align-content: center; */
+    width:200px;
+    /* border:1px solid blue; */
+    gap:5px;
+    align-items: center;
+    height: 50px !important;
+    flex-direction: column;
+}
+
+.top-slider .captionTop{
+    display: flex;
+    color:#000;
+    gap:20px;
+    font-family: Outfit;
+    font-size: 16px;
+    position: relative;
+    top:-40px;
+}
+
+.qwest-parts{
+    display: flex;
+    width: 80%;
+    /* flex-direction: column; */
+}
+
+/* styles for the below slider */
+
+.qwest-end-section{
+    display: flex;
+    align-items: center;
+    gap:50px;
+    margin-top: 50px;
+}
+.totQuestions{
+    display: flex;
+    flex-direction: column;
+}
+.totQuestions p{
+    color: #fff;
+    font-family: Outfit;
+    font-size: 16px;
+    font-weight: 400;
+}
+/* Styles for fire and avatar positions */
+.avatars-box{
+    display: flex;
+}
+
+.avatars-box .avatar{
+    align-self:center;
+    width: 300px;
+}
+.avatars-box .avatar img{
+    max-width: 100%;
+}
+/* styles for qwest buttons */
+.q-btn-box{
+    display: flex;
+    gap:10px;
+}
+
+.qwest-btn button{
+    font-size: 18px;
+    font-family: Outfit;
+    width: 150px;
+    height: 50px;
+    box-shadow: 0px 4px 15px 0px #00000026;
+    border-radius: 10px;
+}
+
+/* styles for qwesty avatar */
+.qwesty-avatar{
+        opacity: 1;
+        animation: anim 1s ease-in-out;
+}
+
+
+/* Styles for fire in the quest page */
+.qwest-fire{
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width:350px;
+    height: auto;
+    flex-direction: column;
+    gap:100px;
+    padding: 10px;
+}
+
+.qwest-fire-anim{
+    position: relative;
+    height: 300px;
+}
+
+.fireImg{
+    justify-self: flex-end;
+    z-index: 1;
+}
+.qwest-fire img{
+    max-width: 100%;
+}
+
+.qwest-fire .coin img{
+    z-index: -1;
+    opacity:1;
+    animation: coinAnimate 2s ease-in-out 0.5s infinite ;
+    transform: rotate(360deg);
+    box-shadow: 5px 5px 20px orange;
+    border-radius: 50%;
+    transition: all 1s;
+    animation: coinAnimateSec 5s  ease-in 1 5s;
+    width: 50px;
+    height:50px;
+}
+
+.retake-qwes{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    font-family: Outfit;
+    border-radius: 15px;
+    padding: 10px;
+    width: 300px;
+    gap:30px;
+    color: #636387;
+    font-size: 20px;
+}
+
+.qwest-fire .retake-btns{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    gap:30%;
+}
+
+.qwest-fire .retake-btns.big{
+  
+    gap:10%;
+}
+
+.retake-btns button{
+    background: #F3EDFF;
+    color: #424040;
+    border-radius: 10px;
+    padding:3px 15px;
+    transition: all 0.5s;
+
+}
+
+.retake-btns.big button{
+    font-size: 16px;
+    padding:3px 5px;
+    width: 120px;
+
+}
+.retake-btns button:first-child,
+.retake-btns button:hover{
+   color: #8E5DF5;
+}
+
+.retake-btns button:hover{
+    transform: scale(1.1);
+ }
+/*  animations for the coin in the fire */
+
+/* Styles for count down timer */
+.count-down{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    flex-direction: column;
+    gap:10px;
+    background-color: #fff;
+    border-radius: 20px;
+    font-family: Outfit;
+    font-size: 16px;
+    width: 320px;
+    height: 135px;
+}
+.count-down p:first-child{
+    color:#636387;
+    font-size: 32px;
+}
+.count-down p:nth-child(2){
+    color:#FA8787;
+    font-size: 40px;
+}
+
+.qwest-fail{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    color: #2A2A27;
+    font-size: 20px;
+    align-items: center;
+}
+
+.qwest-fail span{
+    color: rgb(228, 32, 32);
+    font-weight: bold;
+    padding: 5px;
+}
+.qwest-fail a{
+    margin-top: 20px;
+    border: 1px solid rgba(142, 93, 245,0.5);
+    width: 100px;
+    text-align: center;
+    transition: all 0.5s;
+    padding: 5px;
+    background-color: aliceblue;
+}
+
+.qwest-fail a:hover{
+    background-color:#8E5DF5;
+    color:#fff;
+}
+@keyframes coinAnimate {
+    0% {
+        transform: rotate(0deg) scale(1) ;
+    }
+    100% {
+        transform: rotate(360deg) scale(1.1) ;
+    }
+}
+
+.popup-msg{
+    display: flex;
+    width: auto;
+    padding:10px;
+    width: 356px;
+    height: 106px;
+    gap: 0px;
+    border-radius: 20px 0px 0px 0px;
+    font-family: Outfit;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: left;
+    
+}
+
+/* styles for pop up message */
+
+/*  animations for the coin in the fire */
+/* @keyframes coinAnimateSec {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(200px);
+    }
+} */
+
+/* styles for the last scene */
+.retake-qwes.last{
+    padding: 20px;
+    width: 400px;
+    gap:30px;
+    margin: 0 auto;
+    
+}
+
+ .retake-btns.lastBtns{
+   padding: 20px;
+   font-size: 18px;
+    display: flex;
+}
+
+.retake-btns.lastBtns button:first-child{
+   margin-right: auto;
+}
+@keyframes anim {
+    0%{
+        opacity:0;
+    }
+
+    50%{
+        opacity:0.5;
+    }
+
+    100%{
+        opacity:1;
+    }
+}
+
+/* animations for the countdown timer */
+@keyframes Timeranim {
+    0%{
+        transform: translateX(200);
+    }
+
+    50%{
+        transform: translateX(220);
+    }
+
+    100%{
+        transform: translateX(250);
+    }
+}
+
+@media screen and (max-width:992px){
+    .top-slider{
+        display: none;
+    }
+}
+
+
+
+@media screen and (max-width:768px){
+    #below.MuiBox-root.css-1v5z18m{
+        width: 40vw;
+        height:50px;
+    }
+    /* .q-btn-box{
+        display:none;
+    } */
+    .totQuestions p{
+        font-size: 14px;
+    }
+
+    .qwest-fire{
+        width:100px;
+    }
+    
+    .count-down{
+        width: 220px;
+        height: 105px;
+        padding-top: 10px;
+    }
+    .count-down p:first-child{
+      
+        font-size: 20px;
+    }
+    .count-down p:nth-child(2){
+        font-size: 24px;
+    }
+
+    @keyframes Timeranim {
+        0%{
+            transform: translateX(200);
+        }
+    
+        50%{
+            transform: translateX(220);
+        }
+    
+        100%{
+            transform: translateX(250);
+        }
+    }
+    
+}

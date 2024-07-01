@@ -1,0 +1,217 @@
+
+
+  /* Styles for alert research box */
+  .alert-research-box{
+      display: flex;
+      flex-direction: column;
+      gap:30px;
+      font-family: Outfit;
+  }
+
+  .alert-research-box h2{
+    margin-bottom: auto;
+    font-family: Inter;
+    
+  }
+
+  .alert-research-box .btns{
+    margin-top: auto;
+    display: flex;
+   justify-content: space-between;
+   align-content: flex-end;
+   justify-self: flex-end;
+   align-self: flex-end;
+   gap: 20px;
+  }
+
+  .alert-research-box .btns button{
+    border: 1px solid #8E5DF5;
+    color:#000;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px 20px;
+    transition: all 0.5s;
+  }
+  .alert-research-box .btns button:hover{
+    color: rgba(255, 255, 255, 1);
+    background-color: #8E5DF5;
+
+  }
+
+  .calendar-container {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .calendar-header button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+  }
+  
+  .calendar-header button:hover {
+    background-color: #0056b3;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 0.5rem;
+  }
+  
+  .calendar-day-header {
+    font-weight: bold;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+  }
+  
+  .calendar-day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+    border: 1px solid #f2f2f2;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+  }
+  
+  .calendar-day:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .selected-day {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .time-picker {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .time-picker-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .time-picker-row label {
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+  
+  .time-picker-row input[type='time'] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 768px) {
+    .calendar-container {
+      font-size: 14px;
+      padding: 1rem;
+    }
+  
+    .calendar-header {
+      font-size: 1.2rem;
+    }
+  
+    .calendar-grid {
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 0.3rem;
+    }
+  
+    .calendar-day-header {
+      padding: 0.3rem;
+    }
+  
+    .calendar-day {
+      padding: 0.3rem;
+    }
+  
+    .time-picker-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .time-picker-row label {
+      margin-right: 0;
+      margin-bottom: 0.3rem;
+    }
+  
+    .time-picker-row input[type='time'] {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .calendar-container {
+      padding: 0.5rem;
+    }
+  
+    .calendar-header {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+  
+    .calendar-grid {
+      grid-template-columns: repeat(7, 1fr);
+      grid-gap: 0.2rem;
+    }
+  
+    .calendar-day-header {
+      padding: 0.2rem;
+      font-size: 0.8rem;
+    }
+  
+    .calendar-day {
+      padding: 0.2rem;
+      font-size: 0.8rem;
+    }
+  
+    .time-picker {
+      margin-top: 1rem;
+    }
+  
+    .time-picker-row {
+      margin-bottom: 0.5rem;
+    }
+  
+    .time-picker-row label {
+      font-size: 0.9rem;
+    }
+  
+    .time-picker-row input[type='time'] {
+      font-size: 0.8rem;
+    }
+  }
+  
