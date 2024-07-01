@@ -119,6 +119,9 @@
 
 }
 
+.css-cp2j25-MuiSlider-thumb{
+    width: 0px !important;
+}
 .css-1as9v07-MuiSlider-thumb{
     height: 0px !important;
 }
