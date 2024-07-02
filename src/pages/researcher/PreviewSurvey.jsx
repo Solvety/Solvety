@@ -16,13 +16,16 @@ function PreviewSurvey() {
     const [deadline, setDeadline] = useState(new Date());
     const [researchDeadline, setResearchDeadline] = useState();
     const [isOpen,setIsOpen] = useState({deadline:false, startResearch:false})
-    const [schedule, setSchedule] = useState()
+    const [schedule, setSchedule] = useState();
     const [startResearch, setStartResearch] = useState(false)
     
     const onClose = ()=>{
         setIsOpen(false)
       }
-
+    
+      const saveResearch = ()=>{
+           
+      }
   const style = {
     position: "absolute",
     top: "50%",
