@@ -8,12 +8,13 @@ import { Link } from "react-router-dom";
 import * as React from "react";
 import CalendarMu from "../../components/mahtot/CalendarMu";
 import Modal from "../../components/mahtot/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dayjs from 'dayjs';
-
+import Calendar from '../../components/mahtot/Calendar';
 function PreviewSurvey() {
     const {resTheme} = useTheme();
     const [deadline, setDeadline] = useState(new Date());
+    const [researchDeadline, setResearchDeadline] = useState();
     const [isOpen,setIsOpen] = useState({deadline:false, startResearch:false})
     const [schedule, setSchedule] = useState()
     const [startResearch, setStartResearch] = useState(false)
@@ -33,6 +34,12 @@ function PreviewSurvey() {
     boxShadow: 24,
     p: 4,
   };
+
+  useEffect(()=>{
+    if(researchDeadline=="Invalid Date"){
+      setResearchDeadline(false)
+    }
+  }, [researchDeadline])
 
   const questionTypes = [
     { title: "Q1", type: "Multiple choice" },
@@ -69,9 +76,30 @@ function PreviewSurvey() {
             }
           
                 </div>
+             
+                 <div  >
+                 {researchDeadline && <div className="deadline-box" > <p>Deadline set to {researchDeadline}</p>
+                 <button onClick={()=>setResearchDeadline('')} id="deadline-rm">
+                    Remove deadline
+                  </button>
+                  </div>}
+                  
+                  </div>   
+                
                 <div className="pmreview">
-          <button onClick={()=>setIsOpen({...isOpen, deadline:true})}>
-        set deadline</button> (optional)
+                 
+          {/* <button onClick={()=>setIsOpen({...isOpen, deadline:true})}> */}
+       <div style={{position:'relative', top:'50px' , paddingLeft:'30px'}}>
+         {
+          researchDeadline?"Change Deadline":"set deadline (optional)"
+         }  
+         
+        </div> 
+
+       
+      
+        {/* </button> (optional) */}
+        <CalendarMu deadline={researchDeadline} setDeadline={setResearchDeadline}/>
         <Modal open={isOpen} 
                onClose={onClose} 
                setStartResearch={setStartResearch}
@@ -101,10 +129,11 @@ function PreviewSurvey() {
             </div>
           </div>
         </div>
-        <div className="research-footer">
+        
+      </div>{" "}
+      <div className="research-footer">
           <Footer />
         </div>
-      </div>{" "}
     </div>
   );
 }

@@ -44,7 +44,7 @@ export default function Modal({open,
     const handleResize = () => {
     const modalContentHeight = document.querySelector('.pp').scrollHeight;
     const windowHeight = window.innerHeight;
-    const maxHeight = windowHeight - 100; // Adjust as needed
+    const maxHeight = windowHeight - 100; 
     
     if (modalContentHeight > maxHeight) {
       setModalHeight(maxHeight + 'px');
