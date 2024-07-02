@@ -59,24 +59,24 @@
 }
   /* styles for calendar */
   /* date value */
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+.MuiInputBase-input-MuiOutlinedInput-input{
 visibility: hidden !important;
 }
 
 /* border of the calendar */
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+.MuiOutlinedInput-notchedOutline{
   border: 0px !important;
 }
 
-.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input{
+.MuiOutlinedInput-input{
   width: 0 !important;
 }
-.css-i4bv87-MuiSvgIcon-root:hover{
+.MuiSvgIcon-root:hover{
   z-index: -1;
   background-color: #e5d5d5 !important;
 }
 /* styles for the calendar svg */
-.css-i4bv87-MuiSvgIcon-root{
+.MuiSvgIcon-root{
   padding: 5px 0 0 150px !important;
   /* width: 12rem !important; */
   
