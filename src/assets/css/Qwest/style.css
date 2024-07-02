@@ -49,8 +49,7 @@
 
 
 /* Slider styles */
-.MuiBox-root.css-1v5z18m{
-    /* border:1px solid red; */
+#top.MuiBox-root{
     padding: 0;
     margin: 0;
     display: flex;
@@ -59,21 +58,23 @@
     height: auto;
 }
 
-#below.MuiBox-root.css-1v5z18m{
+#below.MuiBox-root{
     width: 300px;
     height:50px;
 }
 
-.css-ltlhnc-MuiSlider-root{
+ .MuiSlider-root{
+    /* border:1px solid red; */
+
     height:15px !important;
     width:100%  !important;
 }
 
-#top .css-14gyywz-MuiSlider-valueLabel{
+#top .MuiSlider-valueLabel{
     display: none;
 }
 
-#below .css-14gyywz-MuiSlider-valueLabel{
+#below .MuiSlider-valueLabel{
     display: block !important;
     top:40px !important;
     /* height: 100px;
@@ -83,46 +84,46 @@
     border-radius: 10px !important;
 }
 
-.css-14gyywz-MuiSlider-valueLabel::before{
+.MuiSlider-valueLabel::before{
     width:0 !important;
 }
 
-.css-1ucwjgd-MuiSlider-markLabel{
+.MuiSlider-markLabel{
     display: none !important;
 
 }
 
-.css-1bvr8oc-MuiSlider-markLabel{
+.MuiSlider-markLabel{
     display: none;
 }
 
-.css-1ucwjgd-MuiSlider-markLabel{
+.MuiSlider-markLabel{
     background-color: #fff !important;
 }
 
-.MuiSlider-rail.css-7o8aqz-MuiSlider-rail{
+.MuiSlider-rail.MuiSlider-rail{
     background-color: #fff;
     opacity: 1 !important;
 }
-#top .MuiSlider-track.css-ttgsjq-MuiSlider-track{
+#top .MuiSlider-track.MuiSlider-track{
     background-color:#2A2A27 ;
 }
 
-#below .css-ttgsjq-MuiSlider-track{
+#below .MuiSlider-track{
     background-color:#37D8AD ;
 
 }
 
-.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.css-1as9v07-MuiSlider-thumb::before{
+.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.MuiSlider-thumb.MuiSlider-thumbSizeMedium.MuiSlider-thumbColorPrimary.MuiSlider-thumb::before{
     display: none !important;
     
 
 }
 
-.css-cp2j25-MuiSlider-thumb{
+.MuiSlider-thumb{
     width: 0px !important;
 }
-.css-1as9v07-MuiSlider-thumb{
+.MuiSlider-thumb{
     height: 0px !important;
 }
 
