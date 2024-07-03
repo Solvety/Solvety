@@ -18,31 +18,28 @@ function PreviewSurvey() {
     const [isOpen,setIsOpen] = useState({deadline:false, startResearch:false})
     const [schedule, setSchedule] = useState();
     const [startResearch, setStartResearch] = useState(false)
-    
+    const [resetClicked, setResetClicked] = useState(false)
+
     const onClose = ()=>{
         setIsOpen(false)
       }
     
-      const saveResearch = ()=>{
-           
-      }
-  const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
+      const saveResearch = () => {
+        if (researchDeadline && schedule) {
+          alert(`Research saved successfully!
+            Deadline: ${researchDeadline}
+            Start date: ${schedule}`);
+        } else {
+          alert('Please set a deadline and start date for the research.');
+        }
+      };
+
+   const handleReset = () => {
+    setResearchDeadline(null);
+    setSchedule(null);
+    setResetClicked(true)
   };
 
-  useEffect(()=>{
-    if(researchDeadline=="Invalid Date"){
-      setResearchDeadline(false)
-    }
-  }, [researchDeadline])
 
   const questionTypes = [
     { title: "Q1", type: "Multiple choice" },
@@ -80,29 +77,34 @@ function PreviewSurvey() {
           
                 </div>
              
-                 <div  >
-                 {researchDeadline && <div className="deadline-box" > <p>Deadline set to {researchDeadline}</p>
-                 <button onClick={()=>setResearchDeadline('')} id="deadline-rm">
-                    Remove deadline
-                  </button>
-                  </div>}
+                 <div className="calandar-boxes">
+                    <div className="deadline-cont">
+                        <label>
+                            Set deadline (optional)
+                            <CalendarMu deadline={researchDeadline} 
+                                        setDeadline={setResearchDeadline}
+                                        type="deadline" 
+                                        resetClicked={resetClicked}
+                                        setResetClicked={setResetClicked}/>
+
+                        </label>
+                   </div>
+
+                   <div className="startResearch-cont">
+                        <label>
+                             Schedule research *
+                            <CalendarMu startDate={schedule}
+                                        setStartDate={setSchedule}
+                                        type="start" 
+                                        resetClicked={resetClicked}
+                                        s={setResetClicked}/>
+
+                        </label>
+                   </div>
                   
                   </div>   
                 
-                <div className="pmreview">
-                 
-          {/* <button onClick={()=>setIsOpen({...isOpen, deadline:true})}> */}
-       <div style={{position:'relative', top:'50px' , paddingLeft:'30px'}}>
-         {
-          researchDeadline?"Change Deadline":"set deadline (optional)"
-         }  
-         
-        </div> 
-
-       
-      
-        {/* </button> (optional) */}
-        <CalendarMu deadline={researchDeadline} setDeadline={setResearchDeadline}/>
+               
         <Modal open={isOpen} 
                onClose={onClose} 
                setStartResearch={setStartResearch}
@@ -115,25 +117,28 @@ function PreviewSurvey() {
            
         </Modal>
       
-      
+
+
+        <div className="end-btns">
+         
+              <button
+                style={{ backgroundColor: "#8E5DF5", color: "#fff" }}
+                onClick={() => setIsOpen({ ...isOpen, startResearch: true })}>
+                   Start Research
+              </button>
+              <button onClick={saveResearch}>Save research</button>
+              <button onClick={handleReset}>
+                  Reset
+          </button>
+            </div>
     </div>
                
              
   
-            <div className="end-btns">
-              <button
-                style={{ backgroundColor: "#8E5DF5", color: "#fff" }}
-                onClick={() => setIsOpen({ ...isOpen, startResearch: true })}
-              >
-                Start Research
-              </button>
-              <button>Schedule research</button>
-              <button>Save research</button>
-            </div>
           </div>
         </div>
         
-      </div>{" "}
+     
       <div className="research-footer">
           <Footer />
         </div>

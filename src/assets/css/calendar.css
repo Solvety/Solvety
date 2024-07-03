@@ -57,37 +57,37 @@
 .deadline-box button:hover{
   opacity: 0.8;
 }
-  /* styles for calendar */
-  /* date value */
-.MuiInputBase-input-MuiOutlinedInput-input{
-visibility: hidden !important;
+
+
+.MuiCalendarPicker-root {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* border of the calendar */
-.MuiOutlinedInput-notchedOutline{
-  border: 0px !important;
+.MuiCalendarPicker-root .MuiPickersDay-root {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
 }
 
-.MuiOutlinedInput-input{
-  width: 0 !important;
+.MuiCalendarPicker-root .MuiPickersDay-root.Mui-selected {
+  background-color: #8E5DF5 !important;
+  color: #fff;
 }
-.MuiSvgIcon-root:hover{
-  z-index: -1;
-  background-color: #e5d5d5 !important;
-}
-/* styles for the calendar svg */
-.MuiSvgIcon-root{
-  padding: 5px 0 0 150px !important;
-  /* width: 12rem !important; */
-  
-}
- 
 
-@media screen and (max-width:731px) {
-  .deadline-box{
-   
-    flex-direction:column;
-    
+@media (max-width: 768px) {
+  .MuiCalendarPicker-root {
+    max-width: 100%;
+    padding: 12px;
   }
-  
+
+  .MuiCalendarPicker-root .MuiPickersDay-root {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
 }

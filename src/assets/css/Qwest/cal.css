@@ -1,0 +1,37 @@
+ /* styles for calendar */
+  /* date value */
+  .MuiInputBase-input-MuiOutlinedInput-input{
+    visibility: hidden !important;
+    }
+    
+    /* border of the calendar */
+    .MuiOutlinedInput-notchedOutline{
+      border: 0px !important;
+    }
+    
+    .MuiOutlinedInput-input{
+      width: 0 !important;
+    }
+    .MuiSvgIcon-root:hover{
+      /* z-index: -1; */
+      /* background-color: #e5d5d5 !important; */
+    }
+    /* styles for the calendar svg */
+    .MuiSvgIcon-root{
+      padding: 5px 0 0 0px !important;
+      /* width: 12rem !important; */
+      
+    }
+     
+    /* styles for the month in the calendar */
+    .MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button{
+      width:10px !important;
+    }
+    @media screen and (max-width:731px) {
+      .deadline-box{
+       
+        flex-direction:column;
+        
+      }
+      
+    }
