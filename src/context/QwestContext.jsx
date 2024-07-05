@@ -15,6 +15,7 @@ export const QwestProvider = ({ children }) => {
   const [showRetakePopup, setShowRetakePopup] = useState(false);
   const [coins, setCoins] = useState([]);
   const [balance, setBalance] = useState(25);
+  const [isRetake, setIsRetake] = useState(false);
   const timerRef = useRef(null);
   const questionLength = surveyQuestions.length;
   const totalOptionSets = Math.ceil(surveyQuestions[currentQuestion]?.options.length / 4);
@@ -95,22 +96,26 @@ export const QwestProvider = ({ children }) => {
       });
       if (timer > 0) {
         setShowRetakePopup(true);
-        clearInterval(timerRef.current); // Pause the timer when popup is shown
+        clearInterval(timerRef.current);
       } else {
-        updateCoins(1); // Update coin to 1 when question is answered within time limit
+        updateCoins(1); 
       }
     } else {
       setSelectedAnswers({
         ...selectedAnswers,
         [currentQuestion]: index,
       });
-      updateCoins(1); // Update coin to 1 when question is answered again after retake
+      if (isRetake) {
+        updateCoins(1);
+        setIsRetake(false);
+      }
     }
   };
 
   const handleRetakeYes = () => {
     setShowRetakePopup(false);
     setTimer(5);
+    setIsRetake(true);
     timerRef.current = setInterval(() => {
       setTimer((prev) => prev - 1);
     }, 1000);
@@ -151,7 +156,11 @@ export const QwestProvider = ({ children }) => {
   };
 
   const updateCoins = (coin) => {
-    setCoins((prevCoins) => [...prevCoins, coin]);
+    setCoins((prevCoins) => {
+      const newCoins = [...prevCoins, coin];
+      setBalance(balance + coin);
+      return newCoins;
+    });
   };
 
   const progress = (currentQuestion / surveyQuestions.length) * 100;
