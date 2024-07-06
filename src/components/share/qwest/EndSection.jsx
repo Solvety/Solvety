@@ -4,7 +4,7 @@ import QwestButton from "../../ben/qwest/QwestButton"
 import { useQuest } from "../../../context/QwestContext"
 
 
-function EndSection() {
+function EndSection({id}) {
   const {togglePause, endQuiz, isPaused, currentQuestion, max,
     questionLength} = useQuest()
     console.log(max)
@@ -18,6 +18,9 @@ function EndSection() {
                          />
                          
         </div>
+        {
+          id?"":
+        
         <div className="q-btn-box">
 
           <QwestButton  color="#333131"
@@ -37,7 +40,7 @@ function EndSection() {
            </QwestButton>
 
          
-        </div>
+        </div>}
     </div>
   )
 }

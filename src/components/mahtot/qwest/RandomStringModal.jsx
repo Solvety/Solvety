@@ -15,6 +15,7 @@ const RandomStringModal = ({ isOpen, onClose,retakeSuccess, setRetakeSuccess}) =
   const FailureMsg = "Timeout! "
   const navigateTo = useNavigate();
   const timerRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -51,7 +52,7 @@ const RandomStringModal = ({ isOpen, onClose,retakeSuccess, setRetakeSuccess}) =
   useEffect(() => {
     if (seconds === 0) {
       setHasTimedOut(true);
-      navigateTo('/signedUp/qwest-game');
+      // navigateTo('/signedUp/qwest-game');
     }
   }, [seconds, onClose]);
 
@@ -90,13 +91,13 @@ const RandomStringModal = ({ isOpen, onClose,retakeSuccess, setRetakeSuccess}) =
     setShowMessage(true);
 
     if (isInputValid && seconds > 0) {
-      alert('Congratulations! You entered the correct entities and won a coin.');
+      setIsLoading(true); 
       onClose();
       setRetakeSuccess(true);
+      setIsLoading(false);
     } else if (hasTimedOut) {
       alert('Times up! Better luck next time.');
       onClose();
-      navigateTo('/signedUp/qwest-game')
 
     } else {
       generateEntities();
@@ -139,9 +140,22 @@ const RandomStringModal = ({ isOpen, onClose,retakeSuccess, setRetakeSuccess}) =
           placeholder="Enter the displayed entities"
           className={`input-field ${isValid ? 'valid' : 'invalid'}`}
         />
-        <button type="submit" onClick={handleSubmit} className="submit-button">
-          Submit
-        </button>
+       <button
+        type="submit"
+        onClick={handleSubmit}
+        className="submit-button"
+        disabled={!isValid || seconds === 0 || isLoading}
+      >
+        {isLoading ? (
+          // Show a loading indicator while the button is in the "loading" state
+          <div className="loading-indicator">
+            <div className="spinner"></div>
+            <span>Processing...</span>
+          </div>
+        ) : (
+          'Submit'
+        )}
+      </button>
         {showMessage && (
           <p className={`message ${isValid ? 'success' : 'error'}`}>
             {isValid

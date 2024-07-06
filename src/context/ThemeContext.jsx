@@ -17,7 +17,7 @@ export const ThemeProvider = ({ children }) => {
     return localResearchTheme?localResearchTheme:'light';
   })
 
-  const [usertype, setUsertype] = useState('');
+  const [usertype, setUsertype] = useState('participant');
   const [userId, setUserId] = useState('')
 
   const [dropdown, setDropdown] = useState(false);

@@ -59,7 +59,7 @@ const Qwest = () => {
         <div className="overflow-hidden z-20 relative  pr-10">
           <Top/>
         </div>
-        <div className="w-full h-full p-3 overflow-auto">
+        <div className="w-full h-full p-3 overflow-hidden ">
           {!questStarted ? (
             <StartQuest
               onYesClick={handleStartQuest}

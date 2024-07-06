@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import RandomStringModal from '../../mahtot/qwest/RandomStringModal';
 import { useQuest } from '../../../context/QwestContext';
 
-function Fire() {
+function Fire({id}) {
   const [retakeQwes, setRetakeQwes] = useState(false)
   const [coinFallen, setCoinFallen] = useState(false)
   const {showRetakePopup, changeAvatar, setChangeAvatar} = useQuest();
@@ -33,7 +33,7 @@ function Fire() {
   };
 
   return (
-    <div className='qwest-fire'>
+    <div className='qwest-fire' id={id}>
       
         
         <div className='qwest-fire-anim'>
@@ -75,7 +75,7 @@ function Fire() {
 
 
         ) : (
-         <Coin questPop={questPop}  setCoinFallen={ setCoinFallen}/>
+         <Coin questPop={questPop}  setCoinFallen={ setCoinFallen} id={id}/>
         ))}
         </div>
       
@@ -100,14 +100,14 @@ function Fire() {
 
 export default Fire
 
-const Coin = ({ questPop, setCoinFallen})=>{
+const Coin = ({ questPop, setCoinFallen, id})=>{
    return(
    
    <AnimatePresence>
             <motion.div
               className="coin"
-              initial={{ y: questPop?430: 0, opacity: questPop?[1, 0.5, 0]: 1 }}
-              animate={{ y:  questPop?0:400, opacity: questPop?1: [1, 0.5, 0] }}
+              initial={{ y: questPop?id?250:430: 0, opacity: questPop?[1, 0.5, 0]: 1 }}
+              animate={{ y:  questPop?0:id?250:400, opacity: questPop?1: [1, 0.5, 0] }}
               transition={{
                 duration: 2,
                 ease: 'easeIn',
