@@ -8,7 +8,6 @@ import { useLoading } from "../../context/LoadingContext";
 import QwestScenes from "../../components/ben/qwest/QwestScenes";
 // import { qwestComponents } from "../../components/ben/routes";
 
-
 const Qwest = () => {
   const { loading } = useLoading();
   const [questStarted, setQuestStarted] = useState(false);
@@ -54,10 +53,9 @@ const Qwest = () => {
           backgroundRepeat: "no-repeat",
         }}
       >
-      
         <div className="overlay absolute opacity-[0.4] bg-black w-full h-full"></div>
         <div className="overflow-hidden z-20 relative  pr-10">
-          <Top/>
+          <Top />
         </div>
         <div className="w-full h-full p-3 overflow-hidden ">
           {!questStarted ? (
@@ -68,7 +66,6 @@ const Qwest = () => {
           ) : (
             <QwestScenes onEndQuest={handleEndQuest} />
           )}
-         
         </div>
       </div>
     </section>
