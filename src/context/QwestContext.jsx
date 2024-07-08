@@ -15,11 +15,10 @@ export const QwestProvider = ({ children }) => {
   const [showRetakePopup, setShowRetakePopup] = useState(false);
   const [coins, setCoins] = useState([]);
   const [balance, setBalance] = useState(25);
-  const [isRetake, setIsRetake] = useState(false);
   const timerRef = useRef(null);
-  const questionLength = surveyQuestions.length;
+  const questionLength = surveyQuestions.length
   const totalOptionSets = Math.ceil(surveyQuestions[currentQuestion]?.options.length / 4);
-  const [changeAvatar, setChangeAvatar] = useState(false);
+ const [changeAvatar, setChangeAvatar] = useState(false);
 
   const startTimer = () => {
     clearInterval(timerRef.current);
@@ -50,7 +49,7 @@ export const QwestProvider = ({ children }) => {
   };
 
   const handleRetake = () => {
-    setShowRetakePopup(false);
+    setShowRetakePopup(false); 
     startTimer();
   };
 
@@ -59,9 +58,10 @@ export const QwestProvider = ({ children }) => {
     nextQuestion();
   };
 
-  useEffect(() => {
-    setMax(currentQuestion);
-  }, [currentQuestion]);
+
+  useEffect(()=> {
+      setMax(currentQuestion)
+  },[currentQuestion])
 
   useEffect(() => {
     return () => clearInterval(timerRef.current);
@@ -95,35 +95,18 @@ export const QwestProvider = ({ children }) => {
         [currentQuestion]: index,
       });
       if (timer > 0) {
+        updateCoins(0);
         setShowRetakePopup(true);
-        clearInterval(timerRef.current);
       } else {
-        updateCoins(1); 
+        updateCoins(1);
       }
+      clearInterval(timerRef.current);
     } else {
       setSelectedAnswers({
         ...selectedAnswers,
         [currentQuestion]: index,
       });
-      if (isRetake) {
-        updateCoins(1);
-        setIsRetake(false);
-      }
     }
-  };
-
-  const handleRetakeYes = () => {
-    setShowRetakePopup(false);
-    setTimer(5);
-    setIsRetake(true);
-    timerRef.current = setInterval(() => {
-      setTimer((prev) => prev - 1);
-    }, 1000);
-  };
-
-  const handleRetakeNo = () => {
-    setShowRetakePopup(false);
-    nextQuestion();
   };
 
   const nextQuestion = () => {
@@ -143,7 +126,7 @@ export const QwestProvider = ({ children }) => {
 
   const prevQuestion = () => {
     setCurrentQuestion((prev) => (prev > 0 ? prev - 1 : prev));
-    setMax(currentQuestion);
+    setMax(currentQuestion)
     setCurrentOptionSet(0);
   };
 
@@ -156,11 +139,7 @@ export const QwestProvider = ({ children }) => {
   };
 
   const updateCoins = (coin) => {
-    setCoins((prevCoins) => {
-      const newCoins = [...prevCoins, coin];
-      setBalance(balance + coin);
-      return newCoins;
-    });
+    setCoins((prevCoins) => [...prevCoins, coin]);
   };
 
   const progress = (currentQuestion / surveyQuestions.length) * 100;
@@ -200,10 +179,8 @@ export const QwestProvider = ({ children }) => {
         setBalance,
         handleRetake,
         handleCancel,
-        changeAvatar,
+        changeAvatar, 
         setChangeAvatar,
-        handleRetakeYes,
-        handleRetakeNo,
       }}
     >
       {children}
