@@ -1,29 +1,23 @@
-import fireImg from "../../../assets/images/fire.svg";
-import coin from "../../../assets/qwest_assets/coin.svg";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import RandomStringModal from "../../mahtot/qwest/RandomStringModal";
-import { useQuest } from "../../../context/QwestContext";
+import fireImg from '../../../assets/images/fire.svg'
+import coin from '../../../assets/qwest_assets/coin.svg'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import RandomStringModal from '../../mahtot/qwest/RandomStringModal';
+import { useQuest } from '../../../context/QwestContext';
 
 function Fire({id}) {
-  const [retakeQwes, setRetakeQwes] = useState(false);
-  const [coinFallen, setCoinFallen] = useState(false);
-  const {
-    showRetakePopup,
-    changeAvatar,
-    setChangeAvatar,
-    handleRetakeNo,
-    handleRetakeYes,
-  } = useQuest();
-  const [retakeSuccess, setRetakeSuccess] = useState(false);
-  const [questPop, setQuestPop] = useState(false);
-  const [endQuest, setEndQuest] = useState(false);
+  const [retakeQwes, setRetakeQwes] = useState(false)
+  const [coinFallen, setCoinFallen] = useState(false)
+  const {showRetakePopup, changeAvatar, setChangeAvatar} = useQuest();
+  const [retakeSuccess, setRetakeSuccess] = useState(false)
+  const [questPop, setQuestPop] = useState(false)
+  const [endQuest, setEndQuest] = useState(false)
 
-  console.log(questPop);
+  console.log(questPop)
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCoinFallen(true);
-    }, 1000000);
+      setCoinFallen(true)
+    }, 1000000); 
     return () => clearTimeout(timer);
   }, []);
 
@@ -31,7 +25,7 @@ function Fire({id}) {
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
-    setChangeAvatar(true);
+    setChangeAvatar(true)
   };
 
   const handleCloseModal = () => {
@@ -39,7 +33,7 @@ function Fire({id}) {
   };
 
   return (
-    <div className='qwest-fire'>
+    <div className='qwest-fire' id={id}>
       
         
         <div className='qwest-fire-anim'>
@@ -53,54 +47,35 @@ function Fire({id}) {
               animate={{ scale: [0, 1, 1.1, 1] }}
               transition={{
                 duration: 1,
-                ease: "easeIn",
+                ease: 'easeIn',
                 delay: 0,
-              }}
-            >
+              }} >
               <div>
-                {retakeSuccess ? (
-                  <p>Retake quest to claim qwes</p>
-                ) : (
-                  <p>Would you like to recover your qwes?</p>
-                )}
+                { 
+                retakeSuccess?<p>Retake quest to claim qwes</p>:
+                <p>Would you like to recover your qwes?</p>}
               </div>
-              {retakeSuccess ? (
-                <div className="retake-btns big">
-                  <button
-                    onClick={() => {
-                      setQuestPop(true);
-                      setCoinFallen(false);
-                      handleRetakeYes();
-                    }}
-                  >
-                    Yes
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEndQuest(true);
-                      handleRetakeNo();
-                    }}
-                  >
-                    Lets move on
-                  </button>
-                </div>
-              ) : (
-                <div className="retake-btns">
-                  <button
-                    onClick={() => {
-                      handleOpenModal();
-                    }}
-                  >
-                    Yes
-                  </button>
-                  <button onClick={() => handleRetakeNo()}>No</button>
-                </div>
-              )}
+             {
+                retakeSuccess?
+
+                <div className='retake-btns big'>
+                <button onClick={()=>{setQuestPop(true)
+                                      setCoinFallen(false)}}>Yes</button>
+                <button onClick={() => setEndQuest(true)}>Lets move on</button>
+              </div>:
+              <div className='retake-btns'>
+                <button onClick={()=>{
+                  handleOpenModal()
+                 }}>Yes</button>
+                <button onClick={() => setRetakeQwes(false)}>No</button>
+              </div>
+
+             } 
             </motion.div>
 
 
         ) : (
-         <Coin questPop={questPop}  setCoinFallen={ setCoinFallen}/>
+         <Coin questPop={questPop}  setCoinFallen={ setCoinFallen} id={id}/>
         ))}
         </div>
       
@@ -111,27 +86,28 @@ function Fire({id}) {
       </div>
 
       <div>
-        <RandomStringModal
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          retakeSuccess={retakeSuccess}
-          setRetakeSuccess={setRetakeSuccess}
-        />
-      </div>
+      <RandomStringModal 
+                        isOpen={isModalOpen}
+                        onClose={handleCloseModal} 
+                        retakeSuccess={retakeSuccess}
+                        setRetakeSuccess={setRetakeSuccess}
+                       />
+     
     </div>
-  );
+    </div>
+  )
 }
 
 export default Fire
 
-const Coin = ({ questPop, setCoinFallen})=>{
+const Coin = ({ questPop, setCoinFallen, id})=>{
    return(
    
    <AnimatePresence>
             <motion.div
               className="coin"
-              initial={{ y: questPop?430: 0, opacity: questPop?[1, 0.5, 0]: 1 }}
-              animate={{ y:  questPop?0:400, opacity: questPop?1: [1, 0.5, 0] }}
+              initial={{ y: questPop?id?250:430: 0, opacity: questPop?[1, 0.5, 0]: 1 }}
+              animate={{ y:  questPop?0:id?250:400, opacity: questPop?1: [1, 0.5, 0] }}
               transition={{
                 duration: 2,
                 ease: 'easeIn',
