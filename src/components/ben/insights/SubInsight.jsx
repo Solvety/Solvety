@@ -19,7 +19,7 @@ const SubInsight = ({ iconColor, iconBg, icon, label, isActive, onClick }) => {
       >
         {icon}
       </div>
-      <h1 className="font-bold text-xl text-center absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      <h1 className="font-bold text-md text-center absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         {label}
       </h1>
     </div>
