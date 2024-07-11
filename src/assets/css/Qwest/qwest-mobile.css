@@ -1,6 +1,7 @@
 
 .qwest-mobile {
   background: url('../../images/qwestbg.svg');
+  /* background: url('../../qwest_assets/bgqwest.gif'); */
   width: 100%;
   height: 100vh;
   display: flex;

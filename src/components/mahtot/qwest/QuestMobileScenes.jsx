@@ -5,7 +5,9 @@ import CoinGrid from "../../ben/qwest/CoinGrid"
 import { surveyQuestions } from "../../../data/data"
 import QuestionSection from "../../ben/qwest/QuestionSection"
 import Fire from "../../share/qwest/Fire";
-import avatarF from "../../../assets/images/solvety-avatar.png"
+import avatarF from "../../../assets/images/solvety-avatar.png";
+// import avatarF from "../../../assets/qwest_assets/avatarVidNewFirst.gif";
+// import avatarF from "../../../assets/qwest_assets/FireVidGif.gif"
 import avatarSec from "../../../assets/images/Solvety-baby-with-water.png"
 import { QwestProvider, useQuest } from "../../../context/QwestContext"
 

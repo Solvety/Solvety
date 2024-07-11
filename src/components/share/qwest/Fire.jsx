@@ -1,4 +1,5 @@
-import fireImg from '../../../assets/images/fire.svg'
+// import from '../../../assets/images/fire.svg'
+import  fireImg from '../../../assets/qwest_assets/FireVidGif.gif'
 import coin from '../../../assets/qwest_assets/coin.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
@@ -6,17 +7,19 @@ import RandomStringModal from '../../mahtot/qwest/RandomStringModal';
 import { useQuest } from '../../../context/QwestContext';
 
 function Fire({id}) {
-  const [retakeQwes, setRetakeQwes] = useState(false)
-  const [coinFallen, setCoinFallen] = useState(false)
-  const {showRetakePopup, changeAvatar, setChangeAvatar} = useQuest();
-  const [retakeSuccess, setRetakeSuccess] = useState(false)
-  const [questPop, setQuestPop] = useState(false)
+  const {showRetakePopup,
+         changeAvatar,
+         setChangeAvatar,
+         failureStatus,
+         setFailureStatus} = useQuest();
   const [endQuest, setEndQuest] = useState(false)
+  
 
-  console.log(questPop)
+  // console.log(questPop)
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      setCoinFallen(true)
+      setFailureStatus(prevStatus => ({ ...prevStatus, coinFallen: true }));
     }, 1000000); 
     return () => clearTimeout(timer);
   }, []);
@@ -40,7 +43,7 @@ function Fire({id}) {
         {
         
         showRetakePopup &&(
-        coinFallen ? (
+       failureStatus.coinFallen ? (
             <motion.div
               className="retake-qwes"
               initial={{ scale: 0 }}
@@ -52,22 +55,22 @@ function Fire({id}) {
               }} >
               <div>
                 { 
-                retakeSuccess?<p>Retake quest to claim qwes</p>:
+                 failureStatus.retakeSuccess?<p>Retake quest to claim qwes</p>:
                 <p>Would you like to recover your qwes?</p>}
               </div>
              {
-                retakeSuccess?
+                 failureStatus.retakeSuccess?
 
                 <div className='retake-btns big'>
-                <button onClick={()=>{setQuestPop(true)
-                                      setCoinFallen(false)}}>Yes</button>
+                <button onClick={()=>{setFailureStatus({...failureStatus, questPop:true, coinFallen:false})
+                                      }}>Yes</button>
                 <button onClick={() => setEndQuest(true)}>Lets move on</button>
               </div>:
               <div className='retake-btns'>
                 <button onClick={()=>{
                   handleOpenModal()
                  }}>Yes</button>
-                <button onClick={() => setRetakeQwes(false)}>No</button>
+                <button onClick={() => setFailureStatus({...failureStatus, retakeQwes:false})}>No</button>
               </div>
 
              } 
@@ -75,7 +78,10 @@ function Fire({id}) {
 
 
         ) : (
-         <Coin questPop={questPop}  setCoinFallen={ setCoinFallen} id={id}/>
+         <Coin questPop={failureStatus.questPop}  
+               setFailureStatus={ setFailureStatus} 
+               id={id}
+               failureStatus={failureStatus}/>
         ))}
         </div>
       
@@ -89,8 +95,9 @@ function Fire({id}) {
       <RandomStringModal 
                         isOpen={isModalOpen}
                         onClose={handleCloseModal} 
-                        retakeSuccess={retakeSuccess}
-                        setRetakeSuccess={setRetakeSuccess}
+                        retakeSuccess={failureStatus.retakeSuccess}
+                        setFailureStatus ={setFailureStatus}
+                        failureStatus={failureStatus}
                        />
      
     </div>
@@ -100,8 +107,10 @@ function Fire({id}) {
 
 export default Fire
 
-const Coin = ({ questPop, setCoinFallen, id})=>{
-   return(
+const Coin = ({ questPop, setFailureStatus, id, failureStatus})=>{
+
+  if (!failureStatus) return null; 
+  return(
    
    <AnimatePresence>
             <motion.div
@@ -115,9 +124,11 @@ const Coin = ({ questPop, setCoinFallen, id})=>{
               }}
               onAnimationComplete={() => {
                 if(questPop)
-                setCoinFallen(false)
+                // setCoinFallen(false)
+                setFailureStatus({...failureStatus, coinFallen:false})
                 else{
-                  setCoinFallen(true)
+                  // setCoinFallen(true)
+                  setFailureStatus({...failureStatus, coinFallen:true})
 
                 }
               }}

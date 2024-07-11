@@ -18,7 +18,31 @@ export const QwestProvider = ({ children }) => {
   const timerRef = useRef(null);
   const questionLength = surveyQuestions.length
   const totalOptionSets = Math.ceil(surveyQuestions[currentQuestion]?.options.length / 4);
- const [changeAvatar, setChangeAvatar] = useState(false);
+  const [changeAvatar, setChangeAvatar] = useState(false);
+  const [failureStatus, setFailureStatus] = useState(() => {
+    const storedStatus = localStorage.getItem('failureStatus');
+    return storedStatus ? JSON.parse(storedStatus) : {
+      coinFallen: false,
+      retakeSuccess: false,
+      questPop: false,
+      retakeQwes: false,
+    };
+  });
+
+  useEffect(() => {
+    localStorage.setItem('failureStatus', JSON.stringify(failureStatus));
+  }, [failureStatus]);
+
+
+  const resetFailureStatus = () => {
+    setFailureStatus({
+      coinFallen: false,
+      retakeSuccess: false,
+      questPop: false,
+      retakeQwes: false,
+    });
+  };
+
 
   const startTimer = () => {
     clearInterval(timerRef.current);
@@ -181,6 +205,9 @@ export const QwestProvider = ({ children }) => {
         handleCancel,
         changeAvatar, 
         setChangeAvatar,
+        failureStatus,
+        setFailureStatus,
+        resetFailureStatus
       }}
     >
       {children}

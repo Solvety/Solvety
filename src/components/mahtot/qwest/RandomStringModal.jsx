@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { FaFaceSadTear } from "react-icons/fa6";
 
-const RandomStringModal = ({ isOpen, onClose,retakeSuccess, setRetakeSuccess}) => {
+const RandomStringModal = ({ isOpen, onClose,retakeSuccess, setFailureStatus,  failureStatus}) => {
   const [seconds, setSeconds] = useState(5);
   const [entities, setEntities] = useState([]);
   const [userInput, setUserInput] = useState('');
@@ -26,7 +26,7 @@ const RandomStringModal = ({ isOpen, onClose,retakeSuccess, setRetakeSuccess}) =
       startTimer();
     } else {
       clearTimer();
-      setSeconds(5); // Reset the seconds to 5 when the modal closes
+      setSeconds(5); 
 
     }
 
@@ -89,11 +89,12 @@ const RandomStringModal = ({ isOpen, onClose,retakeSuccess, setRetakeSuccess}) =
     const isInputValid = userInput === entityString;
     setIsValid(isInputValid);
     setShowMessage(true);
-
+     
     if (isInputValid && seconds > 0) {
       setIsLoading(true); 
       onClose();
-      setRetakeSuccess(true);
+      // setRetakeSuccess(true);
+      setFailureStatus({...failureStatus,retakeSuccess:true})
       setIsLoading(false);
     } else if (hasTimedOut) {
       alert('Times up! Better luck next time.');

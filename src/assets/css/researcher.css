@@ -81,6 +81,10 @@
 #participant-menu{
     background-color:#4955C4 ;
 }
+
+#participant-menu .flex-search{
+  display: none;
+}
 #partic-link{
     color:#fff;
 }
