@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import ResearchCard from "../../components/ben/research/ResearchCard";
 import {
@@ -17,9 +17,8 @@ import { useTheme } from "../../context/ThemeContext";
 import ResearchCardToast from "../../components/ben/research/ResearchCardToast";
 import DropdownSelect from "../../components/ben/research/DropdownSelect";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { getSelectsur } from "../../api/axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const ResearchPage = () => {
   const { resTheme } = useTheme();
@@ -32,25 +31,21 @@ const ResearchPage = () => {
   const [selectedFilteredOption, setSelectedFilteredOption] =
     useState("Research Type");
   const [selectedDropdown, setSelectedDropdown] = useState("Filter");
-  // navigating to insight page
   const [clickedOnce, setClickedOnce] = useState(false);
   const [timer, setTimer] = useState(null);
   const navigate = useNavigate();
-  // useState for ResearchPageData
   const [data, setData] = useState([]);
 
-  // descending order
   const sortArrowDown = () => {
     setSortType("active");
     setSortBy("desc");
   };
-  // ascending order
+
   const sortArrowUp = () => {
     setSortType("active");
     setSortBy("asc");
   };
 
-  // Filtered research data based on selected status, research type, and time period
   const filteredResearchData = ResearchPageData.filter(
     (research) =>
       (selectedStatus === "Status" ||
@@ -62,7 +57,6 @@ const ResearchPage = () => {
         research.date.toLowerCase() === selectedTimePeriod.toLowerCase())
   );
 
-  // Message to display when no research is found for selected status, research type, or time period
   let noResearchMessage = "";
   if (selectedStatus !== "Status" && filteredResearchData.length === 0) {
     noResearchMessage = `No research found for ${selectedStatus} status`;
@@ -91,11 +85,11 @@ const ResearchPage = () => {
       );
     }
   };
+
   const redirectToInsight = (id) => {
     navigate(`/researcher/insight/${id}`);
   };
 
-  // timeProperties
   const timeProperties = {
     year: "2-digit",
     month: "2-digit",
@@ -104,6 +98,7 @@ const ResearchPage = () => {
     minute: "numeric",
     hour12: true,
   };
+
   function getOptionsForCard(status) {
     switch (status) {
       case "completed":
@@ -113,6 +108,7 @@ const ResearchPage = () => {
           "View Insight",
           "Duplicate",
           new Date().toLocaleString("en-US", timeProperties),
+          "Copy Link",
         ];
       case "ongoing":
         return [
@@ -123,6 +119,7 @@ const ResearchPage = () => {
           "End",
           "Pause",
           new Date().toLocaleString("en-US", timeProperties),
+          "Copy Link",
         ];
       case "paused":
         return [
@@ -130,36 +127,35 @@ const ResearchPage = () => {
           "Delete",
           "View Insight",
           "Duplicate",
-          "Resume ",
+          "Resume",
           "End",
           new Date().toLocaleString("en-US", timeProperties),
+          "Copy Link",
         ];
       default:
         return [];
     }
   }
 
-
-  // fetching selectur.php data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseData = await getSelectsur(); 
+        const responseData = await getSelectsur();
         setData(responseData);
         console.log(responseData);
       } catch (error) {
-        console.error('Error fetching data:', error);
-        toast.error('Error fetching data');
+        console.error("Error fetching data:", error);
+        toast.error("Error fetching data");
       }
     };
     fetchData();
   }, []);
 
-
   useEffect(() => {}, [getOptionsForCard]);
 
   return (
     <div className={`researcher-content ${resTheme}`}>
+      <Toaster position="bottom-right" reverseOrder={false} />
       <div className="researcher-menu">
         <SideBar />
       </div>
@@ -167,10 +163,8 @@ const ResearchPage = () => {
         <div className="top-section">
           <Top />
         </div>
-        {/* content */}
         <div className="home-main-section">
           <div className="w-full  rounded-2xl  flex justify-center my-10">
-            {/* main content */}
             <section
               className={`${switchTheme(
                 "bg-white",
@@ -178,11 +172,9 @@ const ResearchPage = () => {
                 resTheme
               )} w-full  1097:w-[90%] rounded-xl`}
             >
-              {/* heading */}
               <div className="heading 531:flex 531:justify-between  531:items-center py-5 px-2 531:px-10">
                 <h1 className="text-3xl font-bold hidden 531:grid">Research</h1>
                 <div className=" flex gap-2 flex-col 237:flex-row">
-                  {/* status */}
                   <DropdownSelect
                     selectedStatus={selectedStatus}
                     setSelectedStatus={setSelectedStatus}
@@ -210,7 +202,6 @@ const ResearchPage = () => {
                       </option>
                     ))}
                   </select>
-                  {/* Research Type */}
                   <select
                     value={selectedResearchType}
                     onChange={(e) => setSelectedResearchType(e.target.value)}
@@ -229,7 +220,6 @@ const ResearchPage = () => {
                       </option>
                     ))}
                   </select>
-                  {/* This year */}
                   <select
                     value={selectedTimePeriod}
                     onChange={(e) => setSelectedTimePeriod(e.target.value)}
@@ -249,7 +239,6 @@ const ResearchPage = () => {
                       </option>
                     ))}
                   </select>
-                  {/* filter */}
                   <select
                     value={selectedDropdown}
                     onChange={(e) => setSelectedDropdown(e.target.value)}
@@ -268,11 +257,9 @@ const ResearchPage = () => {
                   </select>
                 </div>
               </div>
-              {/* sorting */}
               <div className="sorting px-10 hidden sm:flex gap-5 mb-5">
                 <h1 className="text-xl font-semibold">Number reached</h1>
                 <div className="flex cursor-pointer">
-                  {/* descending sort */}
                   <ArrowDown
                     onClick={sortArrowDown}
                     color={
@@ -281,7 +268,6 @@ const ResearchPage = () => {
                         : switchTheme("#000000", "#ffffff", resTheme)
                     }
                   />
-                  {/* ascending sort */}
                   <ArrowUp
                     onClick={sortArrowUp}
                     color={
@@ -292,7 +278,6 @@ const ResearchPage = () => {
                   />
                 </div>
               </div>
-              {/* main */}
               <div className="w-full px-2 531:px-10 h-screen">
                 {filteredResearchData.length === 0 ? (
                   <ResearchCardToast noResearchMessage={noResearchMessage} />
@@ -339,6 +324,7 @@ const ResearchPage = () => {
                           numberReached={research.numberReached}
                           amountSpent={research.amountSpent}
                           options={getOptionsForCard(research.status)}
+                          id={research.id} // Pass the ID to the ResearchCard component
                         />
                       </div>
                     ))
