@@ -1,7 +1,7 @@
 import React from "react";
 import VisualizationBarChart from "./VisualizationBarChart";
-import LineChart from "../LineChart";
 import Compare from "./Compare";
+import { Download } from "lucide-react";
 
 const ChartDetails = ({
   no = "1",
@@ -40,40 +40,35 @@ const VisualizationStyle = ({
   skipped = "8",
   answered = "28",
   question = "How inspired are you to be your best here?",
+  showFilterAndCompareChart,
 }) => {
   return (
     <main className="">
-      <section className="bg-white mt-8 p-4 rounded-xl">
-        <ChartDetails
-          no={no}
-          questionType={questionType}
-          question={question}
-          skipped={skipped}
-          answered={skipped}
-        />
-        {/* <div className="flex w-full"> */}
-        <VisualizationBarChart />
-        {/* <div className="flex flex-col gap-2">
-            <p className="flex items-center gap-5">
-              <span className="p-2 h-[5px] w-[5px] block bg-purple-900 rounded-full"></span>
-              YES
-            </p>
-            <p className="flex items-center gap-5">
-              <span className="p-2 h-[5px] w-[5px] block bg-purple-900 rounded-full"></span>
-              NO
-            </p>
-            <p className="flex items-center gap-5">
-              <span className="p-2 h-[5px] w-[5px] block bg-purple-900 rounded-full"></span>
-              OTHER
-            </p>
-          </div> */}
-        {/* </div> */}
-        <p className="text-center text-slate-400">Month</p>
-      </section>
-      <section>
-        <LineChart />
-      </section>
-      {/* <Compare /> */}
+      {!showFilterAndCompareChart ? (
+        <>
+          <section className="bg-white mt-8 p-4 rounded-xl">
+            <ChartDetails
+              no={no}
+              questionType={questionType}
+              question={question}
+              skipped={skipped}
+              answered={skipped}
+            />
+            <VisualizationBarChart />
+            <p className="text-center text-slate-400">Month</p>
+          </section>
+          <button className="bg-[#5E6A82] py-2 px-6 rounded-md flex text-white mt-8">
+            <span className="text-[#FFF3C7] inline mr-2">
+              <Download />
+            </span>{" "}
+            <span className="">Download All</span>
+          </button>
+        </>
+      ) : (
+        <section>
+          <Compare />
+        </section>
+      )}
     </main>
   );
 };
