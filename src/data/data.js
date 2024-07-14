@@ -431,3 +431,18 @@ export const surveyQuestions = [
     type: "multiple-choice",
   },
 ];
+
+export const visualizationBarChartData = [
+  {
+    name: "Series 1",
+    data: [34, 44, 54, 21, 12, 43, 33, 23, 66, 66, 58, 59]
+  },
+  {
+    name: "Series 2",
+    data: [11, 32, 45, 32, 34, 52, 41, 25, 34, 52, 53, 41]
+  },
+  {
+    name: "Series 3",
+    data: [10, 23, 35, 40, 44, 54, 55, 30, 20, 60, 65, 70]
+  }
+];
