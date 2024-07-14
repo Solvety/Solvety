@@ -43,7 +43,7 @@ const QuestionInput = ({ resTheme }) => {
   };
 
   const optionComponents = {
-    "Single select text": <QuestionComponent questionType={selectedOption} />,
+    "Single select text": <MultipleChoiceQuestion />,
     Checkboxes: <CheckBoxes />,
     Multichoice: <MultipleChoiceQuestion />,
     "Open ended text": <OpenEndedText />,
@@ -100,14 +100,14 @@ const QuestionInput = ({ resTheme }) => {
           >
             {selectedOption || "multiple choice"} <ChevronDown size={20} />
           </label>
-          <div className="absolute z-50 transform left-[88%] top-[20.7rem] -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute z-50 transform max-h-[300px] scrollbar overflow-y-auto left-[88%] top-[13.2rem] -translate-x-1/2 -translate-y-1/2">
             {isOpen && (
               <div
                 className={`option bg-white text-black rounded-lg py-2  shadow-md`}
               >
                 {options.map((value, index) => (
                   <p
-                    className={`cursor-pointer px-10 font-semibold pt-1 border-[1px] border-x-transparent border-t-transparent hover:border-b-[#763cbd] border-b-gray-300 ${
+                    className={`cursor-pointer whitespace-nowrap px-8 font-semibold pt-1 border-[1px] border-x-transparent border-t-transparent hover:border-b-[#763cbd] border-b-gray-300 ${
                       selectedOption === value ? "text-[#8E5DF5]" : ""
                     }`}
                     key={index}

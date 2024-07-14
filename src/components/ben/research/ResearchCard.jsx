@@ -2,6 +2,7 @@ import { Circle, EllipsisVertical } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { darkTheme, switchTheme } from "../../../data/data";
 import { useTheme } from "../../../context/ThemeContext";
+import toast from "react-hot-toast";
 
 const ResearchCard = ({
   status,
@@ -13,6 +14,7 @@ const ResearchCard = ({
   researchType,
   numberReached,
   amountSpent,
+  id,
 }) => {
   const { resTheme } = useTheme();
   const [open, setOpen] = useState(false);
@@ -36,11 +38,12 @@ const ResearchCard = ({
     };
   }, [open]);
 
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, "0");
-  var mm = String(today.getMonth() + 1).padStart(2, "0");
-  var yyyy = today.getFullYear();
-  var today = mm + "/" + dd + "/" + yyyy;
+  const handleCopyLink = (id) => {
+    const baseUrl = window.location.origin;
+    const link = `${baseUrl}/researcher/insight/${id}`;
+    navigator.clipboard.writeText(link);
+    toast.success(`Link copied: ${link}`);
+  };
 
   return (
     <section className="relative">
@@ -70,24 +73,6 @@ const ResearchCard = ({
             onClick={handleToggle}
             className="options cursor-pointer"
           />
-          {/* {open && (
-          <div
-            className={`option ${switchTheme(
-              "bg-white",
-              "bg-white",
-              resTheme
-            )} text-black rounded-lg py-2 absolute top-7 -right-3 shadow-md z-50`}
-          >
-            {options.map((value, index) => (
-              <p
-                className="cursor-pointer px-3 font-semibold pt-1 border-[1px] border-x-transparent border-t-transparent hover:border-b-[#763cbd] border-b-gray-300"
-                key={index}
-              >
-                {value}
-              </p>
-            ))}
-          </div>
-        )} */}
         </div>
         <h1 className="font-bold text-lg md:text-2xl py-3">{title}</h1>
         <div className="w-full flex flex-col 531:flex-row justify-between">
@@ -119,6 +104,13 @@ const ResearchCard = ({
             <p
               className="cursor-pointer px-3 font-semibold pt-1 border-[1px] border-x-transparent border-t-transparent hover:border-b-[#763cbd] border-b-gray-300"
               key={index}
+              onClick={() => {
+                if (value === "Copy Link") {
+                  handleCopyLink(id);
+                } else {
+                  console.log(value);
+                }
+              }}
             >
               {value}
             </p>
