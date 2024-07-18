@@ -24,6 +24,8 @@ export const ThemeProvider = ({ children }) => {
   const [isSupportClicked, setIsSupportClicked] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
 
+
+  
   useEffect(()=>{
       localStorage.setItem('resTheme', resTheme);
       localStorage.setItem('theme', theme);

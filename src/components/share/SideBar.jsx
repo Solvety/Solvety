@@ -51,7 +51,7 @@ function SideBar() {
 
       const participantMenu = [
         {
-            path: "/" ,
+            path: "/participant/game-play" ,
             name: "Quests",
             icon:<CiCalendar size={'1.5rem'}/>,
         },
@@ -150,19 +150,19 @@ function SideBar() {
           {
             usertype=='participant'?
             
-            participantMenu.map((item, index)=> (
-              <NavLink to={item.path}
-                      className={`side-link  ${item.name}`} 
-                      activeClassName='active'
-                      id='partic-link' >
-
-                   <div className="side-icon" id="partic-icon">
-                        {item.icon}
-                    </div>
-                    
-                   <div className="link-text">{item.name}</div>
-
-
+            participantMenu.map((item, index) => (
+              <NavLink
+                to={item.path}
+                className={`side-link ${item.name} ${index==0?'':"coming-soon"}`}
+                activeClassName="active"
+                id="partic-link"
+              >
+                <div className="side-icon" id="partic-icon">
+                  {item.icon}
+                </div>
+                <div className="link-text">
+                  {index === 0 ? item.name : `${item.name} (Coming Soon)`}
+                </div>
               </NavLink>
             ))
             

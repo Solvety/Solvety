@@ -181,8 +181,10 @@
 
 .avatars-box .avatar{
     align-self:center;
-    width: 300px;
-    margin-top:50px;
+    width: 15vw;
+    position: relative;
+    left: 200px;
+    margin-top:-40px;
 }
 .avatars-box .avatar img{
     max-width: 100%;
@@ -208,7 +210,9 @@
         animation: anim 1s ease-in-out;
 }
 
-
+.fire{
+    width:00px;
+}
 /* Styles for fire in the quest page */
 .qwest-fire{
     margin-top: 100px;
@@ -230,7 +234,10 @@
 .fireImg{
     justify-self: flex-end;
     z-index: 1;
-    width: 300px;
+    width: 200px;
+    position: relative;
+    left: -100px;
+    top:50px;
 }
 .qwest-fire img{
     max-width: 100%;
@@ -238,6 +245,8 @@
 
 .qwest-fire .coin img{
     z-index: -1;
+    position: relative;
+    left: -210px;
     opacity:1;
     animation: coinAnimate 2s ease-in-out 0.5s infinite ;
     transform: rotate(360deg);
@@ -245,8 +254,8 @@
     border-radius: 50%;
     transition: all 1s;
     animation: coinAnimateSec 5s  ease-in 1 5s;
-    width: 50px;
-    height:50px;
+    width: 30px;
+    height:30px;
 }
 
 .retake-qwes{
@@ -438,6 +447,8 @@ left: 60px;
         transform: translateX(250);
     }
 }
+
+
 
 @media screen and (max-width:992px){
     .top-slider{

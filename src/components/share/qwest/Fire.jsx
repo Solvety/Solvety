@@ -115,8 +115,8 @@ const Coin = ({ questPop, setFailureStatus, id, failureStatus})=>{
    <AnimatePresence>
             <motion.div
               className="coin"
-              initial={{ y: questPop?id?250:430: 0, opacity: questPop?[1, 0.5, 0]: 1 }}
-              animate={{ y:  questPop?0:id?250:400, opacity: questPop?1: [1, 0.5, 0] }}
+              initial={{ y: questPop?id?280:470: 0, opacity: questPop?[1, 0.5, 0]: 1 , x: 100}}
+              animate={{ y:  questPop?0:id?250:470, opacity: questPop?1: [1, 0.5, 0] }}
               transition={{
                 duration: 2,
                 ease: 'easeIn',
