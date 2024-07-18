@@ -8,6 +8,7 @@ import { useLoading } from "../../context/LoadingContext";
 import QwestScenes from "../../components/ben/qwest/QwestScenes";
 
 
+
 const Qwest = () => {
   const { loading } = useLoading();
   const [questStarted, setQuestStarted] = useState(false);
@@ -58,7 +59,7 @@ const Qwest = () => {
         <div className="overflow-hidden z-20 relative  pr-10">
           <Top/>
         </div>
-        <div className="w-full h-full p-3 overflow-auto">
+        <div className="w-full h-full p-3 overflow-hidden ">
           {!questStarted ? (
             <StartQuest
               onYesClick={handleStartQuest}

@@ -28,7 +28,9 @@ import {
   Insights,
   Verify,
   Qwest,
-  QwestSec
+  QwestSec,
+  MainQwest,
+  CmsHomePage
 } from "./routes/Index.jsx";
 import SurveyProviders from "./context/Survey/SurveyProviders";
 import Providers from "./context/Provider/Providers.jsx";
@@ -51,6 +53,7 @@ function App() {
             <Route path="/Reset" element={<Reset />} />
             <Route path="/SignUp" element={<Signup />} />
             <Route path='/verify' element={<Verify/>} />
+
             {/* Route for Researcher's page */}
             <Route path="/researcher/home" element={<HomePage />} />
             <Route path="/researcher/settings" element={<SettingsRes />} />
@@ -71,10 +74,15 @@ function App() {
             <Route path="/signedUp/my-profile" element={<Myprofile />} />
             <Route path="/signedUp/qwest-game" element={< Qwest/>}/>
             <Route path="/signedUp/qwest-game-sec" element={< QwestSec/>}/>
+            <Route path="/participant/game-play" element={<MainQwest/>}/>
             <Route path="/fire" element={<Fire/>}/>
             <Route path="/avatar" element={<Avatar/>}/>
             <Route path="/last" element={<LastScene/>}/>
 
+
+            {/* Routes for the CMS page */}
+
+            <Route path="cms/summary" element={<CmsHomePage/>} />
           </Routes>
         </BrowserRouter>
       </React.StrictMode>
