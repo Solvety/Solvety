@@ -44,6 +44,7 @@ export const QwestProvider = ({ children }) => {
   };
 
 
+
   const startTimer = () => {
     clearInterval(timerRef.current);
     setTimer(5);
@@ -208,6 +209,7 @@ export const QwestProvider = ({ children }) => {
         failureStatus,
         setFailureStatus,
         resetFailureStatus
+
       }}
     >
       {children}

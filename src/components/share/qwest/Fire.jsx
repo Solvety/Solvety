@@ -1,10 +1,13 @@
+
 // import from '../../../assets/images/fire.svg'
-import  fireImg from '../../../assets/qwest_assets/FireVidGif.gif'
+import  fireImg from '../../../assets/qwest_assets/FireVidGif.gif"
+
 import coin from '../../../assets/qwest_assets/coin.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import RandomStringModal from '../../mahtot/qwest/RandomStringModal';
 import { useQuest } from '../../../context/QwestContext';
+
 
 function Fire({id}) {
   const {showRetakePopup,
@@ -37,6 +40,7 @@ function Fire({id}) {
 
   return (
     <div className='qwest-fire' id={id}>
+
       
         
         <div className='qwest-fire-anim'>
@@ -44,6 +48,7 @@ function Fire({id}) {
         
         showRetakePopup &&(
        failureStatus.coinFallen ? (
+
             <motion.div
               className="retake-qwes"
               initial={{ scale: 0 }}
@@ -55,6 +60,7 @@ function Fire({id}) {
               }} >
               <div>
                 { 
+
                  failureStatus.retakeSuccess?<p>Retake quest to claim qwes</p>:
                 <p>Would you like to recover your qwes?</p>}
               </div>
@@ -64,6 +70,7 @@ function Fire({id}) {
                 <div className='retake-btns big'>
                 <button onClick={()=>{setFailureStatus({...failureStatus, questPop:true, coinFallen:false})
                                       }}>Yes</button>
+
                 <button onClick={() => setEndQuest(true)}>Lets move on</button>
               </div>:
               <div className='retake-btns'>
@@ -71,6 +78,7 @@ function Fire({id}) {
                   handleOpenModal()
                  }}>Yes</button>
                 <button onClick={() => setFailureStatus({...failureStatus, retakeQwes:false})}>No</button>
+
               </div>
 
              } 
@@ -82,6 +90,7 @@ function Fire({id}) {
                setFailureStatus={ setFailureStatus} 
                id={id}
                failureStatus={failureStatus}/>
+
         ))}
         </div>
       
@@ -102,6 +111,7 @@ function Fire({id}) {
      
     </div>
     </div>
+
   )
 }
 
@@ -111,12 +121,14 @@ const Coin = ({ questPop, setFailureStatus, id, failureStatus})=>{
 
   if (!failureStatus) return null; 
   return(
+
    
    <AnimatePresence>
             <motion.div
               className="coin"
               initial={{ y: questPop?id?280:470: 0, opacity: questPop?[1, 0.5, 0]: 1 , x: 100}}
               animate={{ y:  questPop?0:id?250:470, opacity: questPop?1: [1, 0.5, 0] }}
+
               transition={{
                 duration: 2,
                 ease: 'easeIn',

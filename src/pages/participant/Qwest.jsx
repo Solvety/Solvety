@@ -6,7 +6,7 @@ import Sidebar from "../../components/share/SideBar";
 import Top from "../../components/share/Top";
 import { useLoading } from "../../context/LoadingContext";
 import QwestScenes from "../../components/ben/qwest/QwestScenes";
-// import { qwestComponents } from "../../components/ben/routes";
+
 
 
 const Qwest = () => {
