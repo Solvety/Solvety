@@ -1,6 +1,6 @@
 
 // import from '../../../assets/images/fire.svg'
-import  fireImg from '../../../assets/qwest_assets/FireVidGif.gif"
+import  fireImg from '../../../assets/qwest_assets/FireVidGif.gif'
 
 import coin from '../../../assets/qwest_assets/coin.svg'
 import { motion, AnimatePresence } from 'framer-motion'
