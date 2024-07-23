@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      gridColumn: {
+        'span-2-4': '2 / 4',
+        'span-4-6': '4 / 6',
+      },
       screens: {
         244:'244px',
         475: '475px',

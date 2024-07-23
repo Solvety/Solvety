@@ -33,6 +33,7 @@ import ResponseSortSelect from "../../components/actokuyt/response-sort-select";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import Analytics from "../../components/ben/insights/Analytics";
 
 const Insights = () => {
   const { resTheme } = useTheme();
@@ -183,12 +184,12 @@ const Insights = () => {
             resTheme
           )}`}
         >
-          <h1 className="font-bold text-3xl hidden sm:grid">Insight</h1>
+          {/* <h1 className="font-bold text-3xl hidden sm:grid">Insight</h1> */}
           {/* main */}
           <section className="w-full h-[100%] mb-20">
             {/* scroll header */}
             <div
-              className={`w-full flex gap-10 md:gap-20 my-10 px-10 py-5 overflow-x-scroll ${styles["hide-scroll"]}`}
+              className={`w-full flex gap-10 md:gap-20 mt-5 px-10 py-5 overflow-x-scroll ${styles["hide-scroll"]}`}
             >
               {insightCard.map((insightCard, index) => {
                 return (
@@ -514,19 +515,11 @@ const Insights = () => {
                 </Button>
               </div>
             ) : activeCard === 2 ? (
-              <div>
-                <div className="grid text-black grid-cols-2 gap-4 w-[90%] mx-auto">
-                  <button className="bg-white w-[9em] py-[0.8em] rounded-xl drop-shadow-md">
-                    Table Chart
-                  </button>
-                  <button className="bg-white w-[9em] py-[0.8em] rounded-xl drop-shadow-md">
-                    Visualization Style
-                  </button>
-                </div>
+              <div className="border-t-[1px] border-gray-200 pt-5">
+                <Analytics />
               </div>
             ) : (
-              <>
-              </>
+              <></>
             )}
           </section>
         </div>
