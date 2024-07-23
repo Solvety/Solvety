@@ -1,8 +1,14 @@
+
 .cms-container{
     width: 100%;
     background-color:  #F4F4F4;
-    height: 100vh;
+    /* min-height: 100vh; */
     /* padding: 10px; */
+    font-family: Outfit;
+    /* overflow-y: scroll; */
+    /* display: flex;
+    flex-direction: column; */
+
 }
 
 .cms-header{
@@ -47,3 +53,16 @@
     }
     
 }
+
+.cms-container {
+    position: relative;
+  }
+  
+  .cms-side-bar {
+    transition: transform 0.3s ease;
+  }
+  
+  .flex {
+    transition: margin-left 0.3s ease;
+  }
+  
