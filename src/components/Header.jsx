@@ -75,7 +75,7 @@ function Header() {
           } 
           <Link to='/researcher/home'className='items' id="first-item">about us</Link>
           <Link to='/signedUp/qwest-game'className='items' id="second-item">  contact us</Link>
-          <Link to='/'className='items' id="third-item">  services<TiArrowSortedDown id="arrow" /></Link>
+          <Link to='/cms/summary'className='items' id="third-item">  services<TiArrowSortedDown id="arrow" /></Link>
          <Link to='/login'className='items' id="fourth-item">LogIn</Link>
          
       </nav>}              
@@ -86,7 +86,7 @@ function Header() {
          
             <Link to='/researcher/home' className='items' id="first-item">about us</Link>
             <Link to='/signedUp/qwest-game' className='items' id="second-item">contact us</Link>
-            <Link to='/' className='items' id="third-item">services<TiArrowSortedDown id="arrow" /></Link>
+            <Link to='/cms/summary' className='items' id="third-item">services<TiArrowSortedDown id="arrow" /></Link>
             <Link to='/login' className='items' id="fourth-item">LogIn</Link>
            
         </nav>
