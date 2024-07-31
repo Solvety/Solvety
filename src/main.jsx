@@ -35,16 +35,17 @@ import {
 import SurveyProviders from "./context/Survey/SurveyProviders";
 import Providers from "./context/Provider/Providers.jsx";
 // import QwestSec from "./routes/Index.jsx";
+import Chatbot from "./pages/Chatbot.jsx";
 
 function App() {
   return (
     <ThemeProvider>
       <Providers>
       <SurveyProviders>      
-        <React.StrictMode>
+        {/* <React.StrictMode> */}
+          <Chatbot />
         <BrowserRouter>
           <Routes>
-            
             {/* Route for homepage */}
             <Route path="/" element={<Header />} />
 
@@ -85,7 +86,7 @@ function App() {
             <Route path="cms/summary" element={<CmsHomePage/>} />
           </Routes>
         </BrowserRouter>
-      </React.StrictMode>
+      {/* </React.StrictMode> */}
       </SurveyProviders>
       </Providers>
     </ThemeProvider>
