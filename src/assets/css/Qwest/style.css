@@ -77,8 +77,7 @@
 #below .MuiSlider-valueLabel{
     display: block !important;
     top:40px !important;
-    /* height: 100px;
-    width: 200px; */
+    
     background-color: #fff !important;
     color: #000 !important;
     border-radius: 10px !important;
@@ -164,6 +163,7 @@
 }
 .totQuestions{
     display: flex;
+    gap: 0;
     flex-direction: column;
 }
 .totQuestions p{
@@ -171,6 +171,8 @@
     font-family: Outfit;
     font-size: 16px;
     font-weight: 400;
+    width: 100%;
+    margin-bottom: -15px;
 }
 /* Styles for fire and avatar positions */
 .avatars-box{
@@ -179,7 +181,10 @@
 
 .avatars-box .avatar{
     align-self:center;
-    width: 300px;
+    width: 15vw;
+    position: relative;
+    left: 200px;
+    margin-top:-40px;
 }
 .avatars-box .avatar img{
     max-width: 100%;
@@ -205,7 +210,9 @@
         animation: anim 1s ease-in-out;
 }
 
-
+.fire{
+    width:00px;
+}
 /* Styles for fire in the quest page */
 .qwest-fire{
     margin-top: 100px;
@@ -227,6 +234,10 @@
 .fireImg{
     justify-self: flex-end;
     z-index: 1;
+    width: 200px;
+    position: relative;
+    left: -100px;
+    top:50px;
 }
 .qwest-fire img{
     max-width: 100%;
@@ -234,6 +245,8 @@
 
 .qwest-fire .coin img{
     z-index: -1;
+    position: relative;
+    left: -210px;
     opacity:1;
     animation: coinAnimate 2s ease-in-out 0.5s infinite ;
     transform: rotate(360deg);
@@ -241,8 +254,8 @@
     border-radius: 50%;
     transition: all 1s;
     animation: coinAnimateSec 5s  ease-in 1 5s;
-    width: 50px;
-    height:50px;
+    width: 30px;
+    height:30px;
 }
 
 .retake-qwes{
@@ -252,12 +265,16 @@
     font-family: Outfit;
     border-radius: 15px;
     padding: 10px;
-    width: 300px;
+    /* width: 60vw; */
     gap:30px;
     color: #636387;
     font-size: 20px;
 }
 
+#mob .retake-qwes{
+position: relative;
+left: 60px;
+}
 .qwest-fire .retake-btns{
     display: flex;
     padding: 10px;
@@ -431,16 +448,23 @@
     }
 }
 
+
+
 @media screen and (max-width:992px){
     .top-slider{
         display: none;
     }
+    #below .MuiSlider-valueLabel{
+        font-size: 12px !important;
+        top:35px !important;
+    }
+ 
 }
 
 
 
 @media screen and (max-width:768px){
-    #below.MuiBox-root.css-1v5z18m{
+    #below.MuiBox-root{
         width: 40vw;
         height:50px;
     }
@@ -483,3 +507,36 @@
     }
     
 }
+
+@media screen and (max-width:400px){
+    #below.MuiBox-root{
+        width: 70vw;
+        height:30px;
+    }
+    .totQuestions p{
+        font-size: 14px;
+        text-align: center;
+    }
+    #below .MuiSlider-valueLabel{
+        font-size: 10px !important;
+        top:30px !important;
+        height: 20px;
+        width: 30px;
+    }
+    .retake-btns.big button{
+        font-size: 13px;
+       
+    
+    }
+}
+
+/* @media screen and (max-width:320px){
+    #below.MuiBox-root{
+        width: 25vw;
+        height:30px;
+    }
+    .totQuestions p{
+        font-size: 10px;
+    }
+}
+ */

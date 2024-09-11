@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import SideBar from "../../components/share/SideBar";
 import Top from "../../components/share/Top";
 import Footer from "../../components/Footer";
@@ -8,6 +8,7 @@ import { CirclePlus } from "lucide-react";
 import ProgressBar from "../../components/ben/survey/ProgressBar";
 import QuestionInput from "../../components/ben/survey/QuestionInput";
 import { Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 export const Btn = ({ children, onClick, theme, width, padding }) => {
   return (
@@ -25,11 +26,27 @@ export const Btn = ({ children, onClick, theme, width, padding }) => {
 
 const Survey = () => {
   const { resTheme } = useTheme();
-  const [questions, setQuestions] = useState([1]);
-  const progress = questions.length + 1;
+  const [questions, setQuestions] = useState([1]); // Initialize with the default question
+  const progress = Math.min(questions.length, 10); // Calculate progress based on the questions array length
+  const questionRefs = useRef([]); // Reference to the last question element
+
+  const handleAddQuestion = () => {
+    if (questions.length < 10) {
+      setQuestions((prevQuestions) => [...prevQuestions, prevQuestions.length + 1]);
+    } else {
+      toast.error("Max question limit is 10");
+    }
+  };
+
+  useEffect(() => {
+    if (questions.length > 1) {
+      questionRefs.current[questions.length - 1]?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [questions]);
 
   return (
     <div className={`researcher-content ${resTheme}`}>
+      <Toaster position="bottom-right" reverseOrder={false} />
       <div className="researcher-menu">
         <SideBar />
       </div>
@@ -37,11 +54,9 @@ const Survey = () => {
         <div className="top-section">
           <Top />
         </div>
-        {/* content */}
         <div className="home-main-section">
-          {/* heading */}
           <section
-            className={`w-full  rounded-2xl h-[100h] my-10 p-3 ${switchTheme(
+            className={`w-full rounded-2xl h-[100h] my-10 p-3 ${switchTheme(
               "bg-gray-100",
               darkTheme,
               resTheme
@@ -56,7 +71,6 @@ const Survey = () => {
             >
               Prepare your survey
             </h1>
-            {/* subtitle */}
             <div className="my-2">
               <p
                 className={`${switchTheme(
@@ -79,9 +93,7 @@ const Survey = () => {
                 travel restrictions, and the long-term economic consequences
               </p>
             </div>
-            {/* set question */}
             <div>
-              {/* section 1 */}
               <div
                 className={`${switchTheme(
                   "text-black",
@@ -96,7 +108,7 @@ const Survey = () => {
                       "transparent",
                       darkTheme,
                       resTheme
-                    )} rounded-2xl h-fit shadow-md  whitespace-nowrap font-semibold  border-[1px] border-gray-500  px-5 py-1 cursor-pointer`} // Styling for the upload image badge
+                    )} rounded-2xl h-fit shadow-md whitespace-nowrap font-semibold border-[1px] border-gray-500 px-5 py-1 cursor-pointer`}
                   >
                     upload file
                     <input
@@ -107,23 +119,19 @@ const Survey = () => {
                     />
                   </label>
                 </div>
-                {/* create question */}
                 <section
                   className={`mb-10 ${switchTheme(
                     "text-black",
                     "text-white",
                     resTheme
-                  )} `}
+                  )}`}
                 >
-                  {/* input */}
                   <section className="flex flex-col gap-10">
-                    <div className="flex flex-col md:flex-row h-fit items-center gap-10 w-full">
+                    <div className="flex relative flex-col md:flex-row h-fit items-center gap-10 w-full">
                       <QuestionInput resTheme={resTheme} />
                       <button
-                        onClick={() =>
-                          setQuestions([...questions, questions.length + 1])
-                        }
-                        className={`flex w-full h-fit sm:w-fit gap-3 py-3 px-8 rounded-md font-bold justify-center items-center whitespace-nowrap ${switchTheme(
+                        onClick={handleAddQuestion}
+                        className={`flex fixed right-2 md:right-60 z-40 top-[29.5rem] sm:top-[23rem] h-fit w-fit gap-3 py-3 px-8 rounded-md font-bold justify-center items-center whitespace-nowrap ${switchTheme(
                           "bg-[#8E5DF5] text-white",
                           "bg-[#8E5DF5] text-white",
                           resTheme
@@ -133,16 +141,18 @@ const Survey = () => {
                         <span>Add</span>
                       </button>
                     </div>
-                    {/* additonal question input down here */}
-                     {questions.map((questionIndex) => (
-                      <QuestionInput key={questionIndex} resTheme={resTheme} />
-                    ))} 
+                    {questions.slice(1).map((questionIndex, index) => (
+                      <QuestionInput
+                        key={questionIndex}
+                        resTheme={resTheme}
+                        ref={(el) => (questionRefs.current[index + 1] = el)}
+                      />
+                    ))}
                   </section>
                 </section>
               </div>
             </div>
           </section>
-
           <section className="w-full 1320:w-[70%] px-5 md:px-0">
             <p
               className={`font-semibold py-3 ${switchTheme(
@@ -154,7 +164,7 @@ const Survey = () => {
               Total Questions
             </p>
             <div className="flex flex-col md:flex-row gap-10 md:gap-40 justify-center md:justify-between items-center w-full mb-20">
-              <ProgressBar progress={progress} label={progress} />
+              <ProgressBar progress={progress * 10} label={progress} />
               <Link to="/researcher/preview-survey">
                 <Btn
                   padding={`0.7rem 20px`}
