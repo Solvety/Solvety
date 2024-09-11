@@ -6,9 +6,9 @@ import { useTheme } from "../../../context/ThemeContext";
 const StartQuest = ({ onYesClick, onNoClick }) => {
   const { resTheme } = useTheme();
   return (
-    <section className={`w-full h-screen relative text-white flex flex-col justify-center items-center`}>
+    <section className={`w-full h-screen relative text-white flex flex-col justify-center items-center `}>
       {/* box */}
-      <div className={`question bg-[#F2ECFF] p-[2rem] 992:p-[3rem] w-fit rounded-[1rem] 992:rounded-[3rem] space-y-5 992:space-y-14 mb-0 992:mb-[8rem]`}>
+      <div className={`question bg-[#F2ECFF] p-[2rem] 992:p-[3rem] w-fit rounded-[1rem] 992:rounded-[3rem] space-y-5 992:space-y-14 mb-0 992:mt-[-8rem] `}>
         <h1 className="text-black font-bold">
           Would you like to take a quest survey?
         </h1>

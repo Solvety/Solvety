@@ -1,3 +1,5 @@
+import MainQwest from "../pages/participant/MainQwest";
+
 export { default as Login } from "../pages/LogIn";
 export { default as Signup } from "../pages/SignUpPage";
 export { default as Reset } from "../pages/Reset";
@@ -19,7 +21,7 @@ export {default as Create} from '../pages/researcher/Create'
 export {default as Verify} from '../pages/Verify'
 export {default as Qwest} from '../pages/participant/Qwest'
 export {default as QwestSec} from '../pages/participant/QwestSec'
-
-
+export {default as MainQwest} from '../pages/participant/MainQwest'
+export {default as CmsHomePage} from '../pages/CMS/HomePage'
 
 
