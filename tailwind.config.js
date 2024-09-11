@@ -26,7 +26,10 @@ export default {
         1207:'1207px',
         1309 : '1309px',
         1320:'1320px'
-      }
+      },
+      transitionDuration: {
+        '200s': '200s', 
+      },
     },
   },
   plugins: [],
